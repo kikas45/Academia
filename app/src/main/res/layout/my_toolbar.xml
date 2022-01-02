@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    app:titleTextColor="@android:color/black"
+    android:drawingCacheQuality="high"
+    android:elevation="1dp"
+    app:navigationIcon="@drawable/googleg_standard_color_18"
+    android:outlineAmbientShadowColor="@android:color/darker_gray"
+    android:scrollbarSize="2dp"
+    android:textAlignment="center"
+    android:theme="@style/Theme.AppCompat.Light"
+    android:layout_gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Dashboard"
+        android:textSize="18dp"
+        android:textColor="@color/black"/>
+</androidx.appcompat.widget.Toolbar>
