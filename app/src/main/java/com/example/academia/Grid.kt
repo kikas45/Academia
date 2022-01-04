@@ -41,6 +41,8 @@ class Grid : AppCompatActivity() {
     var swipeRefreshLayout: SwipeRefreshLayout? = null
     private var mFirebaseAnalytics: FirebaseAnalytics? = null
     private var reference: DatabaseReference? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_grid)
@@ -235,11 +237,11 @@ class Grid : AppCompatActivity() {
                     swipeRefreshLayout!!.isEnabled = webView!!.scrollY == 0
                 }
 
-
-
                 ///for downlao
                 webView!!.settings.domStorageEnabled = true
                 webView!!.settings.loadsImagesAutomatically = true
+
+
                 if (!isNetworkAvailable) { // loading offline
                     webView!!.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
                 }

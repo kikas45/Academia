@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import com.example.academia.adapter.ViewPagerAdapter
 import com.example.academia.fragments.DashBoard
-import com.example.academia.fragments.Video
 import com.example.academia.fragments.Home
 
 import com.google.android.material.tabs.TabLayout
@@ -29,7 +28,6 @@ class MainActivity : AppCompatActivity() {
     private fun setuptab() {
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(Home(), title = "")
-        adapter.addFragment(Video(), title = "")
         adapter.addFragment(DashBoard(), title = "")
 
 
@@ -45,7 +43,6 @@ class MainActivity : AppCompatActivity() {
         //if (tabToOpen != -1) {
         // Open the right tab
         //}
-
 
         ////
 
@@ -64,9 +61,8 @@ class MainActivity : AppCompatActivity() {
 
         ////add the titles
 
-        tabs.getTabAt(0)!!.setIcon(R.drawable.ic_baseline_home_24)
-        tabs.getTabAt(1)!!.setIcon(R.drawable.ic_video)
-        tabs.getTabAt(2)!!.setIcon(R.drawable.ic_baseline_dashboard)
+        tabs.getTabAt(0)!!.setIcon(R.drawable.home)
+        tabs.getTabAt(1)!!.setIcon(R.drawable.dasboard)
 
 
 

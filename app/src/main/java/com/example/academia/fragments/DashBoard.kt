@@ -46,26 +46,26 @@ class DashBoard : Fragment() {
 
         //////
 
-        var start = view?.findViewById<ImageView>(R.id.imageView16)
+      //  var start = view?.findViewById<ImageView>(R.id.video3)
 
-        start?.setOnClickListener {
+      //  start?.setOnClickListener {
             // USED TO PREVENT DOUBLE CLICK
-            start.isEnabled = false;
+        //    start.isEnabled = false;
 
-            var starty = Intent(activity, Grid::class.java)
+          ///  var starty = Intent(activity, Grid::class.java)
 
-            startActivity(starty)
-        }
+         //   startActivity(starty)
+     //  }
 
         /////
 
-        var image_h = view?.findViewById<ImageView>(R.id.video)
-        image_h?.setOnClickListener {
+      ///  var image_h = view?.findViewById<ImageView>(R.id.video)
+       /// image_h?.setOnClickListener {
 
             // USED TO PREVENT DOUBLE CLICK
-            image_h.isEnabled = false;
-            var start_image = Intent(activity, Grid::class.java)
-            startActivity(start_image) }
+        ///    image_h.isEnabled = false;
+          //  var start_image = Intent(activity, Grid::class.java)
+         ///   startActivity(start_image) }
 
 
 
@@ -163,11 +163,11 @@ class DashBoard : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        val button1 = view?.findViewById<ImageView>(R.id.imageView16)
-        button1?.isEnabled = true
+     //   val button1 = view?.findViewById<ImageView>(R.id.video3)
+      ///  button1?.isEnabled = true
 
-        val button2  = view?.findViewById<ImageView>(R.id.video)
-        button2?.isEnabled = true
+        ///val button2  = view?.findViewById<ImageView>(R.id.video)
+       /// button2?.isEnabled = true
 
 
     }

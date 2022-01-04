@@ -50,11 +50,12 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
             @Override
             public void onClick(View view) {
                 // Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
-                if (position == 0){
+
+
+                for (int i = -1; i < position; i++) {
                     Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
-                }
-                else if (position ==1){
-                    Toast.makeText(context, "Open second acitivity @" + position, Toast.LENGTH_SHORT).show();
+
+
                 }
             }
         });
