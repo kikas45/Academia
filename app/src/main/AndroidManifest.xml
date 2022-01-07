@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".NetworkSecurity"
         android:allowBackup="true"
@@ -17,14 +18,22 @@
         android:supportsRtl="true"
         android:theme="@style/my_Splash"
         android:usesCleartextTraffic="true">
-
-        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
-     See README(https://goo.gl/l4GJaQ) for more. -->
+        <activity
+            android:name=".ViewActivity"
+            android:configChanges="orientation|keyboard|screenSize"
+            android:exported="true"
+            android:theme="@style/Grid_splash" />
+        <!--
+     Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_icon" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@android:color/holo_red_dark" />
@@ -32,14 +41,13 @@
         <activity
             android:name=".Grid"
             android:configChanges="orientation|keyboard|screenSize"
-            android:theme="@style/Grid_splash"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Grid_splash" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboard|screenSize"
             android:exported="true"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,11 +57,11 @@
 
         <service
             android:name=".MyFirebaseInstanceIDService"
-            android:exported="false"
-            android:directBootAware="true">
+            android:directBootAware="true"
+            android:exported="false">
             tools:ignore="Instantiatable">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
     </application>

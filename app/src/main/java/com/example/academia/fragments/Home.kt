@@ -2,6 +2,7 @@ package com.example.academia.fragments
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.KeyEvent
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager.widget.ViewPager
 import com.example.academia.R
+import com.example.academia.ViewActivity
 import com.google.firebase.database.*
 
 
@@ -63,36 +65,15 @@ class Home : Fragment() {
             resources.getColor(android.R.color.holo_red_dark)
         )
 
-
-        //Solved WebView SwipeUp Problem
-
-
         /////
-
-
        val viewpager_n = view.findViewById<ViewPager>(R.id.viewpager)
         viewpager_n?.offscreenPageLimit = 3
 
-
-
-
-
-
+        ///////
         reference = FirebaseDatabase.getInstance().reference.child("home")
         reference!!.keepSynced(true)
-
-
-
-
-
         webView = view.findViewById(R.id.myWebView)
-        // below line is used to get the instance
-        // of our Firebase database.
-        // below line is used to get the instance
-        // of our Firebase database.
         firebaseDatabase = FirebaseDatabase.getInstance()
-        // below line is used to get reference for our database.
-        // below line is used to get reference for our database.
         databaseReference = firebaseDatabase!!.getReference("home")
 
         /// Call the chrome Client function
@@ -101,11 +82,7 @@ class Home : Fragment() {
         /// Call the database function
         my_databse()
 
-
-        /////
-
-
-        /////
+        ////
         return view
     }
 
@@ -122,12 +99,7 @@ class Home : Fragment() {
                 webView!!.settings.javaScriptEnabled = true
 
 
-                //other settings
-
-
-                //end of chrome client
-
-                ///Defining the settings of the web view
+                ///Defining the settings of the web view to save states in locl catch
                 webView!!.settings.setAppCacheMaxSize((900 * 1024 * 1024).toLong()) // 5MB
 
                 webView!!.settings.setAppCachePath(
@@ -140,8 +112,6 @@ class Home : Fragment() {
                 webView!!.viewTreeObserver.addOnScrollChangedListener {
                     swipeRefreshLayout!!.isEnabled = webView!!.scrollY == 0
                 }
-
-
 
                 if (!isNetworkAvailable()) { // loading offline
                     webView!!.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
@@ -173,6 +143,14 @@ class Home : Fragment() {
 
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                 view.loadUrl(url)
+
+                val intent = Intent(activity?.applicationContext, ViewActivity::class.java)
+                intent.putExtra("URL", url)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(intent)
+                webView!!.stopLoading()
+
+
                 return true
             }
 
@@ -222,6 +200,9 @@ class Home : Fragment() {
         val activeNetworkInfo = connectivityManager!!.activeNetworkInfo
         return !(activeNetworkInfo == null || !activeNetworkInfo.isConnected)
     }
+
+
+    /// this method is used to stop Audio and video playimg at background when view pager swipes
 
     override fun onPause() {
         super.onPause()

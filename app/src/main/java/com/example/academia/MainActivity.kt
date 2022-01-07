@@ -1,7 +1,10 @@
 package com.example.academia
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ActionMode
+import android.webkit.WebView
 import androidx.viewpager.widget.ViewPager
 import com.example.academia.adapter.ViewPagerAdapter
 import com.example.academia.fragments.DashBoard
@@ -20,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         setuptab()
-
 
 
     }
@@ -72,8 +74,6 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
-
 
 
 }

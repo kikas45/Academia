@@ -22,42 +22,45 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 
-class Grid : AppCompatActivity() {
+class ViewActivity : AppCompatActivity() {
     ////
-
-    // creating a variable for our Firebase Database.
-    var firebaseDatabase: FirebaseDatabase? = null
-
-
-    //
-    //    // creating a variable for our Database
-    //    // Reference for Firebase.
-    var databaseReference: DatabaseReference? = null
-
-    // creating a variable for our webview
+    private var mFirebaseAnalytics: FirebaseAnalytics? = null
+    //////
     private var webView: WebView? = null
     var progressBar: ProgressBar? = null
     var swipeRefreshLayout: SwipeRefreshLayout? = null
-    private var mFirebaseAnalytics: FirebaseAnalytics? = null
-    private var reference: DatabaseReference? = null
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_grid)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        //////
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
 
 
-        val actionBar = supportActionBar
+        //////
+        val bundle: Bundle?
+        bundle = intent.extras
+        val web = bundle!!.getString("URL")
 
+        webView = findViewById(R.id.myWebView)
+        webView?.loadUrl(web!!)
+        webView?.getSettings()?.loadsImagesAutomatically = true
+        webView?.getSettings()?.javaScriptEnabled = true
+        webView?.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY)
 
-
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true)
+        ////
+        if (!isNetworkAvailable) { // loading offline
+            webView!!.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
         }
 
 
-        ////////// enabling tool bar
+
+
 
 
         ///The method for Svse instnace ( for SCreen Roataion ) are created bewlow
@@ -72,35 +75,18 @@ class Grid : AppCompatActivity() {
 
 
         //////
-        progressBar = findViewById(R.id.progressBar)
-
-
-        /// for analyics purspose
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
-
-
-        /// conncecting our offline from the class created data
-        //reference = FirebaseDatabase.getInstance().getReference("grid")
-        reference = FirebaseDatabase.getInstance().reference.child("grid")
-        reference!!.keepSynced(true)
-
-        // initializing variable for web view.
+      // progressBar = findViewById(R.id.progressBar)
         webView = findViewById(R.id.myWebView)
-        // below line is used to get the instance
-        // of our Firebase database.
-        firebaseDatabase = FirebaseDatabase.getInstance()
-        // below line is used to get reference for our database.
-        databaseReference = firebaseDatabase!!.reference.child("grid")
-
-        // calling method to initialize
-        // our web view.
-        initializeWebView() //// callling the method
 
 
-        ////
+        //// calling the method
+        initializeWebView()
+
+
+
         webView!!.setDownloadListener(
             DownloadListener { s, s1, s2, s3, l ->
-                Dexter.withActivity(this@Grid)
+                Dexter.withActivity(this@ViewActivity)
                     .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     .withListener(object : PermissionListener {
                         override fun onPermissionGranted(response: PermissionGrantedResponse) {
@@ -122,7 +108,7 @@ class Grid : AppCompatActivity() {
                                 getSystemService(DOWNLOAD_SERVICE) as DownloadManager
                             downloadManager.enqueue(request)
                             Toast.makeText(
-                                this@Grid,
+                                this@ViewActivity,
                                 "Downloading File..",
                                 Toast.LENGTH_SHORT
                             ).show()
@@ -158,100 +144,78 @@ class Grid : AppCompatActivity() {
         ///ENd SWIPE
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun initializeWebView() {
 
-        // calling add value event listener method for getting the values from database.
-        databaseReference!!.addValueEventListener(object : ValueEventListener {
-            @SuppressLint("SetJavaScriptEnabled")
-            override fun onDataChange(snapshot: DataSnapshot) {
-                // this method is call to get the realtime updates in the data.
-                // this method is called when the data is changed in our Firebase console.
-                // below line is for getting the data from snapshot of our database.
-                val webUrl = snapshot.getValue(String::class.java)
-                // after getting the value for our webview url we are
-                // setting our value to our webview view in below line.
-                webView!!.loadUrl(webUrl!!)
-                webView!!.settings.javaScriptEnabled = true
+
+        webView!!.settings.javaScriptEnabled = true
 
 
-                //modified web client
-                webView!!.webViewClient = object : WebViewClient() {
-                    override fun onPageFinished(view: WebView, url: String) {
-                        swipeRefreshLayout!!.isRefreshing = false
-                        super.onPageFinished(view, url)
-                    }
+        //modified web client
+        webView!!.webViewClient = object : WebViewClient() {
 
-                    override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                        view.loadUrl(url)
-                        return true
-                    }
-
-                    override fun onReceivedError(
-                        view: WebView,
-                        request: WebResourceRequest,
-                        error: WebResourceError
-                    ) {
-                        super.onReceivedError(view, request, error)
-
-
-                        Toast.makeText(
-                            applicationContext,
-                            "No internet connection",
-                            Toast.LENGTH_LONG
-                        ).show()
-
-                    }
-                }
-
-
-                ///// we set our   web view chrome client to control our ui
-                webView!!.webChromeClient = object : WebChromeClient() {
-                    override fun onProgressChanged(view: WebView, newProgress: Int) {
-                        progressBar!!.visibility = View.VISIBLE
-                        progressBar!!.progress = newProgress
-                        title = ""
-                        // progressDialog.show();
-                        if (newProgress == 100) {
-                            progressBar!!.visibility = View.GONE
-                            title = "C N B C"
-
-                            ///titleColor = titleColor.red
-                            ///title = view.title
-                            ///progressDialog.dismiss();
-                        }
-                        super.onProgressChanged(view, newProgress)
-                    }
-                }
-
-
-                //end of chrome client
-
-                ///Defining the settings of the web view
-                webView!!.settings.setAppCacheMaxSize((900 * 1024 * 1024).toLong()) // 5MB
-                webView!!.settings.setAppCachePath(applicationContext.cacheDir.absolutePath + "cache")
-                webView!!.settings.allowFileAccess = true
-                webView!!.settings.setAppCacheEnabled(true)
-                webView!!.settings.cacheMode = WebSettings.LOAD_DEFAULT
-                webView!!.viewTreeObserver.addOnScrollChangedListener {
-                    swipeRefreshLayout!!.isEnabled = webView!!.scrollY == 0
-                }
-
-                ///for downlao
-                webView!!.settings.domStorageEnabled = true
-                webView!!.settings.loadsImagesAutomatically = true
-
-
-                if (!isNetworkAvailable) { // loading offline
-                    webView!!.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
-                }
+            override fun onPageFinished(view: WebView, url: String) {
+                swipeRefreshLayout!!.isRefreshing = false
+                super.onPageFinished(view, url)
             }
+            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                view.loadUrl(url)
 
-            override fun onCancelled(error: DatabaseError) {
-                // calling on cancelled method when we receive
-                // any error or we are not able to get the data.
-                Toast.makeText(this@Grid, "Fail to get URL.", Toast.LENGTH_SHORT).show()
+                //if (isNetworkAvailable == null){
+                //  webView?.loadUrl("www.google.com")
+                //}
+
+                return true
             }
-        })
+            override fun onReceivedError(
+                view: WebView,
+                request: WebResourceRequest,
+                error: WebResourceError
+            ) {
+                super.onReceivedError(view, request, error)
+
+
+                //// Toast.makeText(applicationContext, "No internet connection", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        ///// we set our   web view chrome client to control our ui
+        webView!!.webChromeClient = object : WebChromeClient() {
+            override fun onProgressChanged(view: WebView, newProgress: Int) {
+               // progressBar!!.visibility = View.VISIBLE
+               // progressBar!!.progress = newProgress
+                title = ""
+                // progressDialog.show();
+                if (newProgress == 100) {
+                   // progressBar!!.visibility = View.GONE
+                    /// title = "C N B C"
+
+                    ///titleColor = titleColor.red
+                    title = view.title
+                    ///progressDialog.dismiss();
+                }
+                super.onProgressChanged(view, newProgress)
+            }
+        }
+
+
+        //end of chrome client
+
+        ///Defining the settings of the web view
+        webView!!.settings.setAppCacheMaxSize((900 * 1024 * 1024).toLong()) // 5MB
+        webView!!.settings.setAppCachePath(applicationContext.cacheDir.absolutePath + "cache")
+        webView!!.settings.allowFileAccess = true
+        webView!!.settings.setAppCacheEnabled(true)
+        webView!!.settings.cacheMode = WebSettings.LOAD_DEFAULT
+        webView!!.viewTreeObserver.addOnScrollChangedListener {
+            swipeRefreshLayout!!.isEnabled = webView!!.scrollY == 0
+        }
+
+        ///for downloads
+        webView!!.settings.domStorageEnabled = true
+        webView!!.settings.loadsImagesAutomatically = true
+
+
 
 
     }
@@ -301,7 +265,6 @@ class Grid : AppCompatActivity() {
         webView!!.settings.loadsImagesAutomatically = true
         webView!!.settings.javaScriptEnabled = true
         webView!!.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
-        webView!!.loadUrl("grid")
     }
 
 
@@ -312,6 +275,7 @@ class Grid : AppCompatActivity() {
 
         return true
     }
+
 
 
 }
