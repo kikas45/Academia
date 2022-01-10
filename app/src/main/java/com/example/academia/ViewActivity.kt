@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.database.*
+import com.google.firebase.firestore.bundle.BundleCallback
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -175,7 +176,17 @@ class ViewActivity : AppCompatActivity() {
                 super.onReceivedError(view, request, error)
 
 
+
+               ///// webView?.loadUrl("file:///android_asset/clock.html")
+
                 //// Toast.makeText(applicationContext, "No internet connection", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onLoadResource(view: WebView?, url: String?) {
+                super.onLoadResource(view, url)
+
+
+
             }
         }
 

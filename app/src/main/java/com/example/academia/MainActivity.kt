@@ -1,16 +1,21 @@
 package com.example.academia
 
+import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.ActionMode
 import android.webkit.WebView
+import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
 import com.example.academia.adapter.ViewPagerAdapter
 import com.example.academia.fragments.DashBoard
 import com.example.academia.fragments.Home
+import com.google.android.gms.tasks.OnCompleteListener
 
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +28,12 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         setuptab()
+
+
+
+        ////
+
+
 
 
     }
@@ -66,6 +77,25 @@ class MainActivity : AppCompatActivity() {
         tabs.getTabAt(0)!!.setIcon(R.drawable.home)
         tabs.getTabAt(1)!!.setIcon(R.drawable.dasboard)
 
+
+
+        ////Notification
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w(ContentValues.TAG, "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+
+            // Log and toast
+            FirebaseMessaging.getInstance().getToken()
+            Log.d(ContentValues.TAG, "Token")
+
+            Toast.makeText(baseContext, "Token registered", Toast.LENGTH_SHORT).show()
+        })
 
 
 

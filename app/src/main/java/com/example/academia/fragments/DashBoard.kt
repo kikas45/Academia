@@ -127,10 +127,10 @@ class DashBoard : Fragment() {
                 sliderView!!.setSliderAdapter(adapter!!)
 
                 // below line is for setting animation to our slider.
-                sliderView!!.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
+                sliderView!!.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION)
 
                 // below line is for setting auto cycle duration.
-                sliderView!!.autoCycleDirection = SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH
+                sliderView!!.autoCycleDirection = SliderView.AUTO_CYCLE_DIRECTION_RIGHT
 
                 // below line is for setting
                 // scroll time animation

@@ -97,6 +97,7 @@ class Home : Fragment() {
                 val webUrl = snapshot.getValue(String::class.java)
                 webView!!.loadUrl(webUrl!!)
                 webView!!.settings.javaScriptEnabled = true
+                webView!!.settings.useWideViewPort = true
 
 
                 ///Defining the settings of the web view to save states in locl catch
@@ -144,11 +145,11 @@ class Home : Fragment() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                 view.loadUrl(url)
 
-                val intent = Intent(activity?.applicationContext, ViewActivity::class.java)
-                intent.putExtra("URL", url)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                startActivity(intent)
-                webView!!.stopLoading()
+               // val intent = Intent(activity?.applicationContext, ViewActivity::class.java)
+                //intent.putExtra("URL", url)
+               // intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+               // startActivity(intent)
+               // webView!!.stopLoading()
 
 
                 return true

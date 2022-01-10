@@ -59,7 +59,6 @@ class Grid : AppCompatActivity() {
 
         ////////// enabling tool bar
 
-
         ///The method for Svse instnace ( for SCreen Roataion ) are created bewlow
         if (savedInstanceState != null) {
             (findViewById<View>(R.id.myWebView) as WebView).restoreState(
@@ -112,6 +111,7 @@ class Grid : AppCompatActivity() {
                             request.setDescription("Downloading File.....")
                             request.setTitle(URLUtil.guessFileName(s, s2, s3))
                             request.allowScanningByMediaScanner()
+                            request.setMimeType(s1)
                             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                             request.setDestinationInExternalPublicDir(
                                 Environment.DIRECTORY_DOWNLOADS, URLUtil.guessFileName(
@@ -301,7 +301,6 @@ class Grid : AppCompatActivity() {
         webView!!.settings.loadsImagesAutomatically = true
         webView!!.settings.javaScriptEnabled = true
         webView!!.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
-        webView!!.loadUrl("grid")
     }
 
 
