@@ -81,7 +81,7 @@
                     tools:ignore="ContentDescription" />
 
                 <ImageView
-                    android:id="@+id/button14"
+                    android:id="@+id/cfvfgfg"
                     android:layout_width="146dp"
                     android:layout_height="146dp"
                     android:background="@drawable/explore"
@@ -167,7 +167,7 @@
                     tools:ignore="MissingConstraints" />
 
                 <ImageView
-                    android:id="@+id/ccbutdton"
+                    android:id="@+id/cal"
                     android:layout_width="146dp"
                     android:layout_height="146dp"
                     android:background="@drawable/cal"

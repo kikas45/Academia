@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calculators</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  
+</head>
+
+
+
+<body class="container p-3 my-3 bg-info">
+
+<h2 class="text-primary">BMI Calculator</h2>
+
+<form name="bmiForm"  >
+<div class="container ">
+Your Weight(kg): <input type="text" name="weight" class="form-control" ><br />
+Your Height(m): <input type="text" name="height" class="form-control"><br />
+<input type="button" value="Calculate BMI" onClick="calculateBmi()" class="btn btn-primary"><br /><br />
+</div>
+<div class="container">
+Your BMI: <input type="text" name="bmi" class="form-control"><br />
+This Means: <input type="text" name="meaning" class="form-control"><br />
+<input type="reset" value="Reset" class="btn btn-danger"/>
+</div>
+</form>
+<script language="JavaScript">
+
+function calculateBmi() {
+var weight = document.bmiForm.weight.value
+var height = document.bmiForm.height.value
+if(weight > 0 && height > 0){	
+var finalBmi = weight/(height*height)
+document.bmiForm.bmi.value = finalBmi
+if(finalBmi < 18.5){
+document.bmiForm.meaning.value = "That you are too thin. "
+}
+if(finalBmi > 18.5 && finalBmi < 25){
+document.bmiForm.meaning.value = "That you are healthy. "
+}
+if(finalBmi > 25){
+document.bmiForm.meaning.value = "That you have overweight."
+}
+}
+else{
+alert("Please Fill in everything correctly")
+}
+}
+
+</script>
+</body>
+
+
+</html>

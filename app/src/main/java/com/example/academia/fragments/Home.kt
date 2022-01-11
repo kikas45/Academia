@@ -145,11 +145,11 @@ class Home : Fragment() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                 view.loadUrl(url)
 
-               // val intent = Intent(activity?.applicationContext, ViewActivity::class.java)
-                //intent.putExtra("URL", url)
-               // intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-               // startActivity(intent)
-               // webView!!.stopLoading()
+                val intent = Intent(activity?.applicationContext, ViewActivity::class.java)
+                intent.putExtra("URL", url)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+               startActivity(intent)
+               webView!!.stopLoading()
 
 
                 return true
@@ -214,6 +214,7 @@ class Home : Fragment() {
         webView?.onResume()
     }
     ///end on crete view
+
 
 }
 

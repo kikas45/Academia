@@ -45,7 +45,7 @@ class ViewActivity : AppCompatActivity() {
 
         //////
         val bundle: Bundle?
-        bundle = intent.extras
+       bundle = intent.extras
         val web = bundle!!.getString("URL")
 
         webView = findViewById(R.id.myWebView)
@@ -184,8 +184,6 @@ class ViewActivity : AppCompatActivity() {
 
             override fun onLoadResource(view: WebView?, url: String?) {
                 super.onLoadResource(view, url)
-
-
 
             }
         }

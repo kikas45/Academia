@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.example.academia.Grid
 import com.example.academia.R
+import com.example.academia.ViewActivity
 import com.example.academia.adapter.CustomViewPager
 import com.example.academia.adapter.SliderAdapter
 import com.example.academia.adapter.SliderData
@@ -36,36 +37,42 @@ class DashBoard : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_dasboard, container, false)
 
-    val viewpager_n = view.findViewById<CustomViewPager>(R.id.viewpager)
-     viewpager_n?.offscreenPageLimit = 3
+        val viewpager_n = view.findViewById<CustomViewPager>(R.id.viewpager)
+        viewpager_n?.offscreenPageLimit = 3
 
 
-
-
-    ///////
+        ///////
 
         //////
 
-  var start = view?.findViewById<ImageView>(R.id.button)
+        var start = view?.findViewById<ImageView>(R.id.button)
 
- start?.setOnClickListener {
+        start?.setOnClickListener {
             // USED TO PREVENT DOUBLE CLICK
-       start.isEnabled = false;
+            start.isEnabled = false
 
-      var starty = Intent(activity, Grid::class.java)
+            val starty = Intent(activity, Grid::class.java)
 
-      startActivity(starty)
- }
+            startActivity(starty)
 
-        /////
 
-      ///  var image_h = view?.findViewById<ImageView>(R.id.video)
-       /// image_h?.setOnClickListener {
+        }
+
+
+        val image_h = view?.findViewById<ImageView>(R.id.cal)
+        image_h?.setOnClickListener {
+            image_h.isEnabled = false
+            // val intent = Intent(activity?.applicationContext, Calculator::class.java)
+            //intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            //startActivity(intent)
 
             // USED TO PREVENT DOUBLE CLICK
-        ///    image_h.isEnabled = false;
-          //  var start_image = Intent(activity, Grid::class.java)
-         ///   startActivity(start_image) }
+
+            val intent = Intent(activity?.applicationContext, ViewActivity::class.java)
+            val jk = "file:///android_asset/index.html"
+            intent.putExtra("URL", jk  )
+            startActivity(intent)
+        }
 
 
 
@@ -165,6 +172,9 @@ class DashBoard : Fragment() {
 
   val button1 = view?.findViewById<ImageView>(R.id.button)
  button1?.isEnabled = true
+
+  val button2 = view?.findViewById<ImageView>(R.id.cal)
+ button2?.isEnabled = true
 
     //val button2  = view?.findViewById<ImageView>(R.id.video)
 //button2?.isEnabled = true
