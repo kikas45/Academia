@@ -150,7 +150,7 @@ class Home : Fragment() {
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                startActivity(intent)
                webView!!.stopLoading()
-
+                webView!!.requestDisallowInterceptTouchEvent(false)
 
                 return true
             }

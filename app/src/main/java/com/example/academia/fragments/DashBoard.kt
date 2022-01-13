@@ -75,7 +75,20 @@ class DashBoard : Fragment() {
         }
 
 
+        val image_Video = view?.findViewById<ImageView>(R.id.image_Video)
+        image_Video?.setOnClickListener {
+            image_Video?.isEnabled = false
+            // val intent = Intent(activity?.applicationContext, Calculator::class.java)
+            //intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            //startActivity(intent)
 
+            // USED TO PREVENT DOUBLE CLICK
+
+            val intentu = Intent(activity?.applicationContext, ViewActivity::class.java)
+            val jk = "file:///android_asset/index.html"
+            intentu.putExtra("URL", jk  )
+            startActivity(intentu)
+        }
 
         /////// IMage slider
 
@@ -175,6 +188,9 @@ class DashBoard : Fragment() {
 
   val button2 = view?.findViewById<ImageView>(R.id.cal)
  button2?.isEnabled = true
+
+val button3 = view?.findViewById<ImageView>(R.id.image_Video)
+ button3?.isEnabled = true
 
     //val button2  = view?.findViewById<ImageView>(R.id.video)
 //button2?.isEnabled = true

@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.ActionMode
 import android.webkit.WebView
@@ -18,6 +19,10 @@ import com.google.android.material.tabs.TabLayout
 import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : AppCompatActivity() {
+
+    private var doubleBackToExitPressedOnce = false
+    private var backPressToast: Toast? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -105,5 +110,16 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            backPressToast?.cancel()
+            super.onBackPressed()
+            return
+        }
+        doubleBackToExitPressedOnce = true
+        backPressToast = Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT)
+        with(backPressToast) { this?.show() }
+        Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+    }
 }
+

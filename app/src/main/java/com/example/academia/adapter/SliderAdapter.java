@@ -1,16 +1,22 @@
 package com.example.academia.adapter;
 
 
+import com.example.academia.MainActivity2;
 import com.example.academia.R;
+import com.example.academia.ViewActivity;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import android.content.Context;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.activity.result.contract.ActivityResultContracts;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -49,15 +55,46 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                SliderData clickedItem = mSliderItems.get(position);
+                Intent perCountryIntent = new Intent(context,MainActivity2.class);
+                perCountryIntent.putExtra("key", clickedItem.getImgUrl());
+
+                context.startActivity(perCountryIntent);
+
+            }
+
+           //    ClickedListener.onPictureClicked(getItemPosition(sliderItem));
+
+
+
+
                 // Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
 
 
-                for (int i = -1; i < position; i++) {
-                    Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
+
+             //  for (int i = -1; i < position; i++) {
+                  //  Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
 
 
-                }
-            }
+               //    Intent intent = new Intent( context.getApplicationContext(), MainActivity2.class);
+                  // getItemPosition(intent);
+
+
+                  ///  Intent intent = new Intent(getItemPosition(position) )
+
+                   // getItemPosition(position) = Intent(getItemPosition(position), ViewActivity.class);
+
+
+             //  }
+
+
+
+
+
+
+
         });
     }
 
@@ -80,5 +117,12 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
             imageView = itemView.findViewById(R.id.idIVimage);
             this.itemView = itemView;
         }
+
+
+
     }
+
+
+
+
 }
