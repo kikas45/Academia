@@ -1,11 +1,11 @@
 package com.example.academia.fragments
 
+import android.app.AlertDialog
+import android.app.Notification
 import android.content.Intent
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import com.example.academia.Grid
@@ -18,12 +18,21 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
 import java.util.ArrayList
+import android.view.MenuInflater
+import android.widget.RemoteViews
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import com.example.academia.MainActivity
+
+
+
 
 
 class DashBoard : Fragment() {
 
     // creating variables for our adapter, array list,
     // firebase firestore and our sliderview.
+    private var toolbar: Toolbar? = null
     private var adapter: SliderAdapter? = null
     private var sliderDataArrayList: ArrayList<SliderData>? = null
     var db: FirebaseFirestore? = null
@@ -40,9 +49,10 @@ class DashBoard : Fragment() {
         val viewpager_n = view.findViewById<CustomViewPager>(R.id.viewpager)
         viewpager_n?.offscreenPageLimit = 3
 
+        //var toolbar = view.findViewById<Toolbar>(R.id.my_toolbar)
 
         ///////
-
+       setHasOptionsMenu(true)
         //////
 
         var start = view?.findViewById<ImageView>(R.id.button)
@@ -70,7 +80,7 @@ class DashBoard : Fragment() {
 
             val intent = Intent(activity?.applicationContext, ViewActivity::class.java)
             val jk = "file:///android_asset/index.html"
-            intent.putExtra("URL", jk  )
+            intent.putExtra("URL", jk)
             startActivity(intent)
         }
 
@@ -86,7 +96,7 @@ class DashBoard : Fragment() {
 
             val intentu = Intent(activity?.applicationContext, ViewActivity::class.java)
             val jk = "file:///android_asset/index.html"
-            intentu.putExtra("URL", jk  )
+            intentu.putExtra("URL", jk)
             startActivity(intentu)
         }
 
@@ -111,8 +121,6 @@ class DashBoard : Fragment() {
         loadImages()
 
         ////////
-
-
 
 
         //////
@@ -166,12 +174,20 @@ class DashBoard : Fragment() {
             }
         }.addOnFailureListener { // if we get any error from Firebase we are
             // displaying a toast message for failure
-            Toast.makeText(this@DashBoard.activity, "Fail to load slider data..", Toast.LENGTH_SHORT)
+            Toast.makeText(
+                this@DashBoard.activity,
+                "Fail to load slider data..",
+                Toast.LENGTH_SHORT
+            )
                 .show()
         }
 
         sliderView?.setOnClickListener {
-            Toast.makeText(this@DashBoard.activity, "Fail to load slider data..", Toast.LENGTH_SHORT)
+            Toast.makeText(
+                this@DashBoard.activity,
+                "Fail to load slider data..",
+                Toast.LENGTH_SHORT
+            )
                 .show()
 
         }
@@ -183,19 +199,41 @@ class DashBoard : Fragment() {
     override fun onResume() {
         super.onResume()
 
-  val button1 = view?.findViewById<ImageView>(R.id.button)
- button1?.isEnabled = true
+        val button1 = view?.findViewById<ImageView>(R.id.button)
+        button1?.isEnabled = true
 
-  val button2 = view?.findViewById<ImageView>(R.id.cal)
- button2?.isEnabled = true
+        val button2 = view?.findViewById<ImageView>(R.id.cal)
+        button2?.isEnabled = true
 
-val button3 = view?.findViewById<ImageView>(R.id.image_Video)
- button3?.isEnabled = true
+        val button3 = view?.findViewById<ImageView>(R.id.image_Video)
+        button3?.isEnabled = true
 
-    //val button2  = view?.findViewById<ImageView>(R.id.video)
+        //val button2  = view?.findViewById<ImageView>(R.id.video)
 //button2?.isEnabled = true
 
     }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater!!.inflate(R.menu.main_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item!!.itemId
+        //handle item clicks
+        if (id == R.id.action_settings){
+            //do your action here, im just showing toast
+            Toast.makeText(activity, "Settings", Toast.LENGTH_SHORT).show()
+        }
+        if (id == R.id.action_sort){
+            //do your action here, im just showing toast
+            Toast.makeText(activity, "Sort", Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 }
