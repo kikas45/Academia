@@ -28,4 +28,12 @@
         <item name="android:statusBarColor" tools:targetApi="lollipop">@color/black</item>
     </style>
 
+
+    <style name="view_screen" parent="Theme.AppCompat.Light">
+        <item name="android:actionBarSize">50dp</item>
+        <item name="android:background">#FFFFFC</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/black</item>
+    </style>
+
+
 </resources>

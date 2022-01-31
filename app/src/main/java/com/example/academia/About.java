@@ -30,7 +30,7 @@ public class About extends AppCompatActivity {
 
 
     public void openGit(View view) {
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/kikas45/Academia")));
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/kikas45")));
     }
 
     public void openInsta(View view) {

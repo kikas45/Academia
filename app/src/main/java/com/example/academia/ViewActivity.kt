@@ -162,6 +162,7 @@ class ViewActivity : AppCompatActivity() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                 view.loadUrl(url)
 
+
                 //if (isNetworkAvailable == null){
                 //  webView?.loadUrl("www.google.com")
                 //}
@@ -177,8 +178,7 @@ class ViewActivity : AppCompatActivity() {
 
 
 
-               ///// webView?.loadUrl("file:///android_asset/clock.html")
-
+                   // webView?.loadUrl("file:///android_asset/index.html")
                 //// Toast.makeText(applicationContext, "No internet connection", Toast.LENGTH_LONG).show()
             }
 
@@ -290,6 +290,7 @@ class ViewActivity : AppCompatActivity() {
         if (!isNetworkAvailable) { // loading offline
             webView!!.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
         }
+
     }
 
 

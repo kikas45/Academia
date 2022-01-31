@@ -214,7 +214,7 @@ class Grid : AppCompatActivity() {
                         // progressDialog.show();
                         if (newProgress == 100) {
                             progressBar!!.visibility = View.GONE
-                            title = "C N B C"
+                            title = "NEWS"
 
                             ///titleColor = titleColor.red
                             ///title = view.title
