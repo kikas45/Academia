@@ -38,7 +38,7 @@ public class About extends AppCompatActivity {
     }
 
     public void openTwitter(View view) {
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/jessicaosgh")));
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/marzymus")));
     }
 
     public void openFacebook(View view) {
