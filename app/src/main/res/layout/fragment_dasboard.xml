@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:id="@+id/activity_main_swipe_refresh_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,8 +8,13 @@
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
     tools:context=".MainActivity">
+    <include
+        layout="@layout/my_toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
 
     <androidx.core.widget.NestedScrollView
+        android:paddingTop="45dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -68,7 +74,7 @@
                     android:paddingLeft="20dp"
                     android:gravity="left"
                     android:text="Feeds"
-                    android:textColor="#181918"
+                    android:textColor="#052205"
                     android:textSize="16sp"/>
             </LinearLayout>
 
@@ -259,7 +265,7 @@
                             android:id="@+id/image_Video"
                             android:layout_width="160dp"
                             android:layout_height="146dp"
-                            android:src="@drawable/explore"
+                            android:src="@drawable/cal"
                             tools:targetApi="lollipop" />
 
 

@@ -44,8 +44,6 @@ public class IntroActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-
         setContentView(R.layout.activity_intro);
 
         // ini views
@@ -72,6 +70,7 @@ public class IntroActivity extends AppCompatActivity {
         final List<ScreenItem> mList = new ArrayList<>();
         boolean fresh_food = mList.add(new ScreenItem("Resources", "acess to simplified materials and videos, just like a vegatble intake ::::", R.drawable.fruitsintro));
         mList.add(new ScreenItem("Fresh Vegetables", "Have fruits & vegetables if you want to lead a fruitful life", R.drawable.vegintro));
+        mList.add(new ScreenItem("Fast Delivery", "Extraordinary Service.", R.drawable.ic_icon));
         mList.add(new ScreenItem("Fast Delivery", "Extraordinary Service.", R.drawable.ic_icon));
 
 
@@ -162,7 +161,7 @@ public class IntroActivity extends AppCompatActivity {
     private void savePrefsData() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        editor.putBoolean("isIntroOpnend", true);
+        editor.putBoolean("finish", true);
         editor.commit();
     }
 
@@ -170,7 +169,7 @@ public class IntroActivity extends AppCompatActivity {
 
     private boolean restorePrefData() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs", MODE_PRIVATE);
-        Boolean isIntroActivityOpnendBefore = pref.getBoolean("isIntroOpnend", false);
+        Boolean isIntroActivityOpnendBefore = pref.getBoolean("finish", false);
         return isIntroActivityOpnendBefore;
     }
 

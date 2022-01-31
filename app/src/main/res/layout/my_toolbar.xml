@@ -8,24 +8,23 @@
     android:id="@+id/my_toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
-    app:titleTextColor="@android:color/black"
+    android:background="#FFFFFF"
+    app:titleTextColor="#00000000"
     android:drawingCacheQuality="high"
     android:elevation="1dp"
     app:navigationIcon="@drawable/googleg_standard_color_18"
     android:outlineAmbientShadowColor="@android:color/darker_gray"
     android:scrollbarSize="2dp"
     android:textAlignment="center"
+
     android:theme="@style/Theme.AppCompat.Light"
-app:menu="@menu/main_menu"
     android:layout_gravity="center_horizontal">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:text="Dashboard"
         android:textSize="18dp"
-        android:textColor="@color/black"/>
+        android:textColor="@android:color/black"/>
 
 </androidx.appcompat.widget.Toolbar>

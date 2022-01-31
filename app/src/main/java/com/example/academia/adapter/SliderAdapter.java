@@ -4,6 +4,7 @@ package com.example.academia.adapter;
 import com.example.academia.MainActivity2;
 import com.example.academia.R;
 import com.example.academia.ViewActivity;
+import com.google.firebase.database.FirebaseDatabase;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import android.content.Context;
@@ -52,18 +53,50 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         final SliderData sliderItem = mSliderItems.get(position);
         Picasso.get().load(sliderItem.getImgUrl()).into(viewHolder.imageView);
 
+
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-                SliderData clickedItem = mSliderItems.get(position);
-                Intent perCountryIntent = new Intent(context,MainActivity2.class);
-                perCountryIntent.putExtra("key", clickedItem.getImgUrl());
+                ///SliderData clickedItem = mSliderItems.get(position);
+               // Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context,MainActivity2.class);
 
-                context.startActivity(perCountryIntent);
+        if (position == 0){
+            intent.putExtra("key", "   Home   "+ position);
+            context.startActivity(intent);
 
-            }
+        }
+        else if (position ==1){
+            intent.putExtra("key", "   News   "+ position);
+            context.startActivity(intent);
+
+        }
+        else if (position == 2){
+            intent.putExtra("key", "   Banking   "+ position);
+            context.startActivity(intent);
+        }
+
+        else if (position == 3){
+            intent.putExtra("key", "   Contacts   "+ position);
+            context.startActivity(intent);
+        }
+        else if (position == 4){
+            intent.putExtra("key", "   More   "+ position);
+            context.startActivity(intent);
+        }
+
+        else if (position == 5){
+            intent.putExtra("key", "   PEACE   "+ position);
+            context.startActivity(intent);
+        } }
+
+
+
+
+
+
 
            //    ClickedListener.onPictureClicked(getItemPosition(sliderItem));
 

@@ -264,7 +264,7 @@ class Grid : AppCompatActivity() {
             webView!!.goBack()
         }
         else{
-            super.onBackPressed()
+           finish()
         }
 
     }
@@ -313,5 +313,17 @@ class Grid : AppCompatActivity() {
         return true
     }
 
+    override fun onResume() {
+        super.onResume()
+        webView?.onResume()
+        if (!isNetworkAvailable) { // loading offline
+            webView!!.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        webView?.onPause()
+    }
 
 }

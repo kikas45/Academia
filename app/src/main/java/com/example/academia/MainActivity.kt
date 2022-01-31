@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-      // supportActionBar?.hide()
+      supportActionBar?.hide()
 
         setuptab()
 
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
             FirebaseMessaging.getInstance().getToken()
             Log.d(ContentValues.TAG, "Token")
 
-            Toast.makeText(baseContext, "Token registered", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(baseContext, "Token registered", Toast.LENGTH_SHORT).show()
         })
 
 

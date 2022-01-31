@@ -8,9 +8,6 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.ImageView
 import android.widget.Toast
-import com.example.academia.Grid
-import com.example.academia.R
-import com.example.academia.ViewActivity
 import com.example.academia.adapter.CustomViewPager
 import com.example.academia.adapter.SliderAdapter
 import com.example.academia.adapter.SliderData
@@ -22,10 +19,7 @@ import android.view.MenuInflater
 import android.widget.RemoteViews
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.example.academia.MainActivity
-
-
-
+import com.example.academia.*
 
 
 class DashBoard : Fragment() {
@@ -49,10 +43,38 @@ class DashBoard : Fragment() {
         val viewpager_n = view.findViewById<CustomViewPager>(R.id.viewpager)
         viewpager_n?.offscreenPageLimit = 3
 
-        //var toolbar = view.findViewById<Toolbar>(R.id.my_toolbar)
 
-        ///////
-       setHasOptionsMenu(true)
+        //// Adding custom Toolbar
+       var toolbar = view.findViewById<Toolbar>(R.id.my_toolbar)
+        toolbar.inflateMenu(R.menu.main_menu)
+        toolbar.setOnMenuItemClickListener {
+
+            if (it.itemId == R.id.action_about){
+               // Toast.makeText(activity, "please bare with us, we are working on it", Toast.LENGTH_SHORT).show()
+                val uitter = Intent(context, About::class.java)
+                startActivity(uitter)
+
+            }
+
+
+            if (it.itemId == R.id.action_share){
+                val share_go = Intent()
+
+                share_go.action = Intent.ACTION_SEND
+                share_go.putExtra(
+                    Intent.EXTRA_TEXT,
+                    "https://play.google.com/store/apps/details?id" + this.activity?.packageName)
+                share_go.type = "text/plain"
+                startActivity(Intent.createChooser(share_go, "share via"))
+            }
+
+            return@setOnMenuItemClickListener false
+        }
+        ////
+        ////
+
+
+
         //////
 
         var start = view?.findViewById<ImageView>(R.id.button)
@@ -79,7 +101,7 @@ class DashBoard : Fragment() {
             // USED TO PREVENT DOUBLE CLICK
 
             val intent = Intent(activity?.applicationContext, ViewActivity::class.java)
-            val jk = "file:///android_asset/index.html"
+            val jk: String = "file:///android_asset/index.html"
             intent.putExtra("URL", jk)
             startActivity(intent)
         }
@@ -121,6 +143,7 @@ class DashBoard : Fragment() {
         loadImages()
 
         ////////
+
 
 
         //////
@@ -182,15 +205,14 @@ class DashBoard : Fragment() {
                 .show()
         }
 
-        sliderView?.setOnClickListener {
-            Toast.makeText(
-                this@DashBoard.activity,
-                "Fail to load slider data..",
-                Toast.LENGTH_SHORT
-            )
-                .show()
+       sliderView?.setOnClickListener {
+           if (adapter?.getItemPosition(true) == 1){Toast.makeText(this@DashBoard.activity, "checked",  Toast.LENGTH_SHORT).show()}
 
-        }
+           else {
+               Toast.makeText(this@DashBoard.activity, "Fail to load slider data..", Toast.LENGTH_SHORT).show()
+           }
+
+       }
     }
 
 
@@ -210,30 +232,6 @@ class DashBoard : Fragment() {
 
         //val button2  = view?.findViewById<ImageView>(R.id.video)
 //button2?.isEnabled = true
-
-    }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        setHasOptionsMenu(true)
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater!!.inflate(R.menu.main_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item!!.itemId
-        //handle item clicks
-        if (id == R.id.action_settings){
-            //do your action here, im just showing toast
-            Toast.makeText(activity, "Settings", Toast.LENGTH_SHORT).show()
-        }
-        if (id == R.id.action_sort){
-            //do your action here, im just showing toast
-            Toast.makeText(activity, "Sort", Toast.LENGTH_SHORT).show()
-        }
-        return super.onOptionsItemSelected(item)
     }
 
 }
