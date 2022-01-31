@@ -265,7 +265,7 @@
                             android:id="@+id/image_Video"
                             android:layout_width="160dp"
                             android:layout_height="146dp"
-                            android:src="@drawable/cal"
+                            android:src="@drawable/cal2"
                             tools:targetApi="lollipop" />
 
 

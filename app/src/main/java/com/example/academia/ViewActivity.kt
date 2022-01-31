@@ -291,7 +291,10 @@ class ViewActivity : AppCompatActivity() {
             webView!!.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
         }
 
+
     }
+
+
 
 
 }

@@ -3,6 +3,7 @@ package com.example.academia
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.DownloadManager
+import android.app.ProgressDialog
 import android.net.ConnectivityManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -28,7 +29,7 @@ class Grid : AppCompatActivity() {
     // creating a variable for our Firebase Database.
     var firebaseDatabase: FirebaseDatabase? = null
 
-
+    var progressDialog: ProgressDialog? = null
     //
     //    // creating a variable for our Database
     //    // Reference for Firebase.
@@ -47,6 +48,13 @@ class Grid : AppCompatActivity() {
         setContentView(R.layout.activity_grid)
 
 
+        ////
+
+        progressBar = findViewById<View>(R.id.progressBar) as ProgressBar
+        progressDialog = ProgressDialog(this)
+        progressDialog!!.setMessage("Loading Please Wait")
+
+        ////
 
         val actionBar = supportActionBar
 
@@ -211,14 +219,14 @@ class Grid : AppCompatActivity() {
                         progressBar!!.visibility = View.VISIBLE
                         progressBar!!.progress = newProgress
                         title = ""
-                        // progressDialog.show();
+                        progressDialog?.show();
                         if (newProgress == 100) {
                             progressBar!!.visibility = View.GONE
-                            title = "NEWS"
+                            title = "Videos"
 
                             ///titleColor = titleColor.red
                             ///title = view.title
-                            ///progressDialog.dismiss();
+                            progressDialog?.dismiss();
                         }
                         super.onProgressChanged(view, newProgress)
                     }
@@ -316,9 +324,7 @@ class Grid : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         webView?.onResume()
-        if (!isNetworkAvailable) { // loading offline
-            webView!!.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
-        }
+
     }
 
     override fun onPause() {

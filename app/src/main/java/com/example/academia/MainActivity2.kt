@@ -34,8 +34,5 @@ class MainActivity2 : AppCompatActivity(){
 
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
-    }
+
 }

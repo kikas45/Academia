@@ -1,6 +1,8 @@
 package com.example.academia
 
+import android.app.AlertDialog
 import android.content.ContentValues
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -112,15 +114,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            backPressToast?.cancel()
-            super.onBackPressed()
-            return
-        }
-        doubleBackToExitPressedOnce = true
-        backPressToast = Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT)
-        with(backPressToast) { this?.show() }
-        Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage("Are you sure you want to Exit?")
+                .setNegativeButton("No", null)
+                .setPositiveButton(
+                    "Yes"
+                ) { dialogInterface, i -> finishAffinity() }.show()
+
+
+
+       /// if (doubleBackToExitPressedOnce) {
+          //  backPressToast?.cancel()
+        //    super.onBackPressed()
+           // return
+      //  }
+     //   doubleBackToExitPressedOnce = true
+     //   backPressToast = Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT)
+      //  with(backPressToast) { this?.show() }
+       // Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
     }
 }
 

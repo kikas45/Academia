@@ -5,12 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent"
-    android:layout_marginBottom="50dp"
     android:id="@+id/swipeRefreshLayout"
     tools:context=".Grid">
-
 
 
 
@@ -18,8 +15,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="9dp"
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_marginTop="-2dp"
+            android:progress="20"
+            android:visibility="gone"
 
-
+            />
         <WebView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -68,10 +68,10 @@ public class IntroActivity extends AppCompatActivity {
         // fill list screen
 
         final List<ScreenItem> mList = new ArrayList<>();
-        boolean fresh_food = mList.add(new ScreenItem("Resources", "acess to simplified materials and videos, just like a vegatble intake ::::", R.drawable.fruitsintro));
-        mList.add(new ScreenItem("Fresh Vegetables", "Have fruits & vegetables if you want to lead a fruitful life", R.drawable.vegintro));
-        mList.add(new ScreenItem("Fast Delivery", "Extraordinary Service.", R.drawable.ic_icon));
-        mList.add(new ScreenItem("Fast Delivery", "Extraordinary Service.", R.drawable.ic_icon));
+        boolean fresh_food = mList.add(new ScreenItem("Resources", "acess to simplified materials and videos, just like a vegatble intake ::::", R.drawable.book1));
+        mList.add(new ScreenItem("Fresh Vegetables", "Have fruits & vegetables if you want to lead a fruitful life", R.drawable.book2));
+        mList.add(new ScreenItem("Fast Delivery", "Extraordinary Service.", R.drawable.book3));
+
 
 
         // setup viewpager

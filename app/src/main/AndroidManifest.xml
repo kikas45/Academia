@@ -62,7 +62,7 @@
             android:name=".Grid"
             android:configChanges="orientation|keyboard|screenSize"
             android:exported="true"
-            android:theme="@style/Grid_splash" />
+            android:theme="@style/view_screen" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboard|screenSize"

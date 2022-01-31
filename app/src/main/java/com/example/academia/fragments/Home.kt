@@ -1,6 +1,7 @@
 package com.example.academia.fragments
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -37,6 +38,10 @@ class Home : Fragment() {
 
     var databaseReference: DatabaseReference? = null
 
+    /// prgress dialog
+
+    var progressDialog: ProgressDialog? = null
+
     /////
 
     var progressBar: ProgressBar? = null
@@ -53,7 +58,10 @@ class Home : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
 
-        // progressBar = view?.findViewById(R.id.progressBar)
+        progressBar = view?.findViewById(R.id.progressBar)
+        progressDialog = ProgressDialog(context)
+        progressDialog!!.setMessage("Loading Please Wait")
+
 
         ////
         swipeRefreshLayout = view?.findViewById<View>(R.id.swipeRefreshLayout) as SwipeRefreshLayout
@@ -176,6 +184,16 @@ class Home : Fragment() {
         ///// we set our   web view chrome client to control our ui
         webView!!.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView, newProgress: Int) {
+
+
+
+
+                progressDialog?.show();
+                if (newProgress == 100) {
+                    progressBar!!.visibility = View.GONE
+                    progressDialog?.dismiss();
+                }
+
                 //  progressBar!!.visibility = View.VISIBLE
                 //   progressBar!!.progress = newProgress
                 // progressDialog.show();
