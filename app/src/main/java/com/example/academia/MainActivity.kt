@@ -8,10 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.ActionMode
-import android.webkit.WebView
+
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.viewpager.widget.ViewPager
 import com.example.academia.adapter.ViewPagerAdapter
 import com.example.academia.fragments.DashBoard

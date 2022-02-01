@@ -6,13 +6,13 @@ import android.app.DownloadManager
 import android.app.ProgressDialog
 import android.net.ConnectivityManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.view.View
 import android.webkit.*
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.database.*
@@ -58,6 +58,7 @@ class Grid : AppCompatActivity() {
 
         val actionBar = supportActionBar
 
+        actionBar?.title = "Videos"
 
 
         if (actionBar != null) {
@@ -102,49 +103,11 @@ class Grid : AppCompatActivity() {
         // calling method to initialize
         // our web view.
         initializeWebView() //// callling the method
+        download() /// for downlad manger
 
 
         ////
-        webView!!.setDownloadListener(
-            DownloadListener { s, s1, s2, s3, l ->
-                Dexter.withActivity(this@Grid)
-                    .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    .withListener(object : PermissionListener {
-                        override fun onPermissionGranted(response: PermissionGrantedResponse) {
-                            val request = DownloadManager.Request(Uri.parse(s))
-                            request.setMimeType(s3)
-                            val cookies = CookieManager.getInstance().getCookie(s)
-                            request.addRequestHeader("cookie", cookies)
-                            request.addRequestHeader("User-Agent", s1)
-                            request.setDescription("Downloading File.....")
-                            request.setTitle(URLUtil.guessFileName(s, s2, s3))
-                            request.allowScanningByMediaScanner()
-                            request.setMimeType(s1)
-                            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                            request.setDestinationInExternalPublicDir(
-                                Environment.DIRECTORY_DOWNLOADS, URLUtil.guessFileName(
-                                    s, s2, s3
-                                )
-                            )
-                            val downloadManager =
-                                getSystemService(DOWNLOAD_SERVICE) as DownloadManager
-                            downloadManager.enqueue(request)
-                            Toast.makeText(
-                                this@Grid,
-                                "Downloading File..",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
 
-                        override fun onPermissionDenied(response: PermissionDeniedResponse) {}
-                        override fun onPermissionRationaleShouldBeShown(
-                            permission: PermissionRequest,
-                            token: PermissionToken
-                        ) {
-                            token.continuePermissionRequest()
-                        }
-                    }).check()
-            })
 
 
         /// START SWIPE
@@ -192,7 +155,10 @@ class Grid : AppCompatActivity() {
                     override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                         view.loadUrl(url)
 
+
+                        //webView?.loadUrl("file:///android_asset/index.html")
                         return true
+
                     }
 
                     override fun onReceivedError(
@@ -201,8 +167,6 @@ class Grid : AppCompatActivity() {
                         error: WebResourceError
                     ) {
                         super.onReceivedError(view, request, error)
-
-
                         Toast.makeText(
                             applicationContext,
                             "No internet connection",
@@ -219,14 +183,14 @@ class Grid : AppCompatActivity() {
                         progressBar!!.visibility = View.VISIBLE
                         progressBar!!.progress = newProgress
                         title = ""
-                        progressDialog?.show();
+                        // this@Grid.progressDialog?.show();
                         if (newProgress == 100) {
                             progressBar!!.visibility = View.GONE
                             title = "Videos"
 
                             ///titleColor = titleColor.red
                             ///title = view.title
-                            progressDialog?.dismiss();
+                            //  progressDialog?.dismiss();
                         }
                         super.onProgressChanged(view, newProgress)
                     }
@@ -271,8 +235,8 @@ class Grid : AppCompatActivity() {
         if (webView?.canGoBack() == true){
             webView!!.goBack()
         }
-        else{
-           finish()
+        else {
+            finish()
         }
 
     }
@@ -313,6 +277,51 @@ class Grid : AppCompatActivity() {
     }
 
 
+    fun download(){
+
+        webView!!.setDownloadListener(
+            DownloadListener { s, s1, s2, s3, l ->
+                Dexter.withActivity(this@Grid)
+                    .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    .withListener(object : PermissionListener {
+                        override fun onPermissionGranted(response: PermissionGrantedResponse) {
+                            val request = DownloadManager.Request(Uri.parse(s))
+                            request.setMimeType(s3)
+                            val cookies = CookieManager.getInstance().getCookie(s)
+                            request.addRequestHeader("cookie", cookies)
+                            request.addRequestHeader("User-Agent", s1)
+                            request.setDescription("Downloading File.....")
+                            request.setTitle(URLUtil.guessFileName(s, s2, s3))
+                            request.allowScanningByMediaScanner()
+                            request.setMimeType(s1)
+                            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                            request.setDestinationInExternalPublicDir(
+                                Environment.DIRECTORY_DOWNLOADS, URLUtil.guessFileName(
+                                    s, s2, s3
+                                )
+                            )
+                            val downloadManager =
+                                getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+                            downloadManager.enqueue(request)
+                            Toast.makeText(
+                                this@Grid,
+                                "Downloading File..",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        override fun onPermissionDenied(response: PermissionDeniedResponse) {}
+                        override fun onPermissionRationaleShouldBeShown(
+                            permission: PermissionRequest,
+                            token: PermissionToken
+                        ) {
+                            token.continuePermissionRequest()
+                        }
+                    }).check()
+            })
+    }
+
+
     override fun onSupportNavigateUp(): Boolean {
 
         finish()
@@ -323,12 +332,18 @@ class Grid : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
+        if (!isNetworkAvailable) { // loading offline
+            webView!!.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
+        }
+
         webView?.onResume()
 
     }
 
     override fun onPause() {
         super.onPause()
+
         webView?.onPause()
     }
 

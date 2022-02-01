@@ -1,5 +1,7 @@
 package com.example.academia.Intro;
 
+import static android.os.Trace.isEnabled;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -88,6 +90,7 @@ public class IntroActivity extends AppCompatActivity {
         btnGetStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnGetStarted.setEnabled(false);
                 Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(mainActivity);
                 savePrefsData();
