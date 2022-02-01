@@ -332,11 +332,6 @@ class Grid : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
-        if (!isNetworkAvailable) { // loading offline
-            webView!!.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
-        }
-
         webView?.onResume()
 
     }

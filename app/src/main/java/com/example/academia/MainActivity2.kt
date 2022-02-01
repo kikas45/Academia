@@ -24,11 +24,12 @@ class MainActivity2 : AppCompatActivity(){
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun GetIntent() {
 
         val intent = intent.getStringExtra("key" )
         val t1 = findViewById<TextView>(R.id.textView)
-        t1.setText("welcome + intent")
+        t1.setText("welcome" + intent)
 
 
     }

@@ -90,7 +90,18 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         else if (position == 5){
             intent.putExtra("key", "   PEACE   "+ position);
             context.startActivity(intent);
-        } }
+
+        }    else if (position == 6){
+            intent.putExtra("key", "   PEACE   "+ position);
+            context.startActivity(intent);
+
+        }  else if (position == 7){
+            intent.putExtra("key", "   PEACE   "+ position);
+            context.startActivity(intent);
+        }
+
+
+            }
 
 
 
