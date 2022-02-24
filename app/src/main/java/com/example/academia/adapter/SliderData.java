@@ -1,27 +1,29 @@
 package com.example.academia.adapter;
 
 public class SliderData {
+    private String imgUrl, name;
 
-    // string for our image url.
-    private String imgUrl;
-
-    // empty constructor which is
-    // required when using Firebase.
     public SliderData() {
     }
 
-    // Constructor
-    public SliderData(String imgUrl) {
+    public SliderData(String imgUrl, String name) {
         this.imgUrl = imgUrl;
+        this.name = name;
     }
 
-    // Getter method.
     public String getImgUrl() {
         return imgUrl;
     }
 
-    // Setter method.
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

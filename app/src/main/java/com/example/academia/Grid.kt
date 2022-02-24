@@ -4,16 +4,23 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.DownloadManager
 import android.app.ProgressDialog
+import android.graphics.Color
+import android.graphics.Color.green
 import android.net.ConnectivityManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.view.View
 import android.webkit.*
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.database.*
 import com.karumi.dexter.Dexter
@@ -161,17 +168,28 @@ class Grid : AppCompatActivity() {
 
                     }
 
+                    @RequiresApi(Build.VERSION_CODES.M)
                     override fun onReceivedError(
                         view: WebView,
                         request: WebResourceRequest,
                         error: WebResourceError
                     ) {
                         super.onReceivedError(view, request, error)
-                        Toast.makeText(
-                            applicationContext,
-                            "No internet connection",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        //Toast.makeText(applicationContext, "No internet connection", Toast.LENGTH_LONG).show()
+
+                        val snackbar = Snackbar.make(view, "check Connectivity or simply ", Snackbar.LENGTH_INDEFINITE)
+                        snackbar.animationMode = BaseTransientBottomBar.ANIMATION_MODE_SLIDE
+                       snackbar.duration = 2000000000
+                        snackbar.show()
+                        snackbar.setAction("Reload") {webView?.reload()
+
+                            Handler().postDelayed(Runnable { snackbar.show() }, 1000)
+                        }
+
+                        snackbar.setActionTextColor(getColor(R.color.black));
+                        snackbar.setTextColor(getColor(R.color.red));
+
+
 
                     }
                 }

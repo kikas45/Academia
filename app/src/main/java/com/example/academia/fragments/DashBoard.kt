@@ -124,29 +124,12 @@ class DashBoard : Fragment() {
 
         /////// IMage slider
 
-        // creating a new array list fr our array list.
 
-        // creating a new array list fr our array list.
         sliderDataArrayList = ArrayList()
-
-        // initializing our slider view and
-        // firebase firestore instance.
-
-        // initializing our slider view and
-        // firebase firestore instance.
         sliderView = view?.findViewById<SliderView>(R.id.slider)
         db = FirebaseFirestore.getInstance()
 
-        // calling our method to load images.
-
-        // calling our method to load images.
         loadImages()
-
-        ////////
-
-
-
-        //////
 
         return view
     }
@@ -164,6 +147,7 @@ class DashBoard : Fragment() {
                 // below line is use for setting our
                 // image url for our modal class.
                 model.imgUrl = sliderData.imgUrl
+                model.name = sliderData.name
 
                 // after that we are adding that
                 // data inside our array list.
@@ -232,6 +216,11 @@ class DashBoard : Fragment() {
 
         //val button2  = view?.findViewById<ImageView>(R.id.video)
 //button2?.isEnabled = true
+    }
+    public fun loadImages22(){
+
+
+
     }
 
 }

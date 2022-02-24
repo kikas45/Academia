@@ -4,19 +4,25 @@ package com.example.academia.adapter;
 import com.example.academia.MainActivity2;
 import com.example.academia.R;
 import com.example.academia.ViewActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import android.content.Context;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 
 import com.squareup.picasso.Picasso;
 
@@ -51,20 +57,45 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         // and setting that url for image inside our
         // image view using Picasso.
         final SliderData sliderItem = mSliderItems.get(position);
+      viewHolder.text_slider.setText(sliderItem.getName());
+
+        viewHolder.text_slider.setTextSize(16);;
+        viewHolder.text_slider.setTextColor(Color.WHITE);
         Picasso.get().load(sliderItem.getImgUrl()).into(viewHolder.imageView);
+
+
+/*
+        FirebaseDatabase.getInstance()
+                .getReference().child("users")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()) {
+                            SliderData user = snapshot.getValue(SliderData.class);
+                            user.getImgUrl();
+                            viewHolder.itemView.getContext();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+*/
+
+
 
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 ///SliderData clickedItem = mSliderItems.get(position);
                // Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context,MainActivity2.class);
 
         if (position == 0){
-            intent.putExtra("key", "   Home   "+ position);
+            intent.putExtra("key", "   Home   "+ sliderItem.getName());
             context.startActivity(intent);
 
         }
@@ -154,11 +185,13 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         // variables for our view and image view.
         View itemView;
         ImageView imageView;
+        TextView text_slider;
 
         public SliderAdapterVH(View itemView) {
             super(itemView);
             // initializing our views.
             imageView = itemView.findViewById(R.id.idIVimage);
+            text_slider = itemView.findViewById(R.id.text_slider);
             this.itemView = itemView;
         }
 
