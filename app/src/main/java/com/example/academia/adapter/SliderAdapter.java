@@ -64,37 +64,18 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         Picasso.get().load(sliderItem.getImgUrl()).into(viewHolder.imageView);
 
 
-/*
-        FirebaseDatabase.getInstance()
-                .getReference().child("users")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()) {
-                            SliderData user = snapshot.getValue(SliderData.class);
-                            user.getImgUrl();
-                            viewHolder.itemView.getContext();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-*/
-
-
-
-
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ///SliderData clickedItem = mSliderItems.get(position);
-               // Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context,MainActivity2.class);
+                // Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, MainActivity2.class);
+                intent.putExtra("key", "   Home   " + sliderItem.getName());
+                context.startActivity(intent);
 
-        if (position == 0){
+                ///Old code
+            }
+           /*     if (position == 0){
             intent.putExtra("key", "   Home   "+ sliderItem.getName());
             context.startActivity(intent);
 
@@ -132,42 +113,12 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         }
 
 
-            }
+           }
 
 
+*/
 
-
-
-
-
-           //    ClickedListener.onPictureClicked(getItemPosition(sliderItem));
-
-
-
-
-                // Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
-
-
-
-             //  for (int i = -1; i < position; i++) {
-                  //  Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
-
-
-               //    Intent intent = new Intent( context.getApplicationContext(), MainActivity2.class);
-                  // getItemPosition(intent);
-
-
-                  ///  Intent intent = new Intent(getItemPosition(position) )
-
-                   // getItemPosition(position) = Intent(getItemPosition(position), ViewActivity.class);
-
-
-             //  }
-
-
-
-
-
+            ///Old code
 
 
         });
