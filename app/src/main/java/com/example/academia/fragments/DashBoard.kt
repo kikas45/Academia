@@ -40,7 +40,7 @@ class DashBoard : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_dasboard, container, false)
 
-        val viewpager_n = view.findViewById<CustomViewPager>(R.id.viewpager)
+        val viewpager_n = view.findViewById<CustomViewPager>(R.id.custom_viewpager)
         viewpager_n?.offscreenPageLimit = 3
 
 
@@ -153,22 +153,17 @@ class DashBoard : Fragment() {
                 // data inside our array list.
                 sliderDataArrayList!!.add(model)
 
-                // after adding data to our array list we are passing
-                // that array list inside our adapter class.
+
                 adapter = SliderAdapter(this@DashBoard.activity, sliderDataArrayList)
 
-                // belows line is for setting adapter
-                // to our slider view
+
                 sliderView!!.setSliderAdapter(adapter!!)
 
-                // below line is for setting animation to our slider.
+
                 sliderView!!.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION)
 
-                // below line is for setting auto cycle duration.
                 sliderView!!.autoCycleDirection = SliderView.AUTO_CYCLE_DIRECTION_RIGHT
 
-                // below line is for setting
-                // scroll time animation
                 sliderView!!.scrollTimeInSec = 3
 
                 // below line is for setting auto

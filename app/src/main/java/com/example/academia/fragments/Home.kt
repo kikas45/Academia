@@ -25,18 +25,12 @@ import com.google.firebase.database.*
 
 class Home : Fragment() {
 
-    // creating a variable for our Firebase Database.
     var firebaseDatabase: FirebaseDatabase? = null
-
-    // creating a variable for our Database
-    // Reference for Firebase.
-
-    private var reference: DatabaseReference? = null
+    var databaseReference: DatabaseReference? = null
 
     // creating a variable for our webview
     private var webView: WebView? = null
 
-    var databaseReference: DatabaseReference? = null
 
     /// prgress dialog
 
@@ -74,15 +68,15 @@ class Home : Fragment() {
         )
 
         /////
-       val viewpager_n = view.findViewById<ViewPager>(R.id.viewpager)
+       val viewpager_n = view.findViewById<ViewPager>(R.id.custom_viewpager)
         viewpager_n?.offscreenPageLimit = 3
 
         ///////
-        reference = FirebaseDatabase.getInstance().reference.child("home")
-        reference!!.keepSynced(true)
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase!!.getReference("home")  //.child("value").child("url2")
+        /////
         webView = view.findViewById(R.id.myWebView)
-        firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase!!.getReference("home")
 
         /// Call the chrome Client function
         my_wechtome()

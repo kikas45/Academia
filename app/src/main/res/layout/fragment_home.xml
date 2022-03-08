@@ -6,6 +6,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="0dp"
+    android:layout_marginTop="0dp"
+    android:orientation="vertical"
+    android:layout_gravity="center_vertical"
     android:id="@+id/swipeRefreshLayout"
     tools:context=".Grid">
 
@@ -26,8 +30,12 @@
 
             />
         <WebView
+            android:fitsSystemWindows="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_gravity="center_vertical"
             android:id="@+id/myWebView"
             />
 
