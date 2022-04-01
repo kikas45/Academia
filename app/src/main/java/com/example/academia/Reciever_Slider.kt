@@ -1,19 +1,15 @@
 package com.example.academia
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.ActionMode
 import android.widget.TextView
-import android.widget.Toast
-import com.example.academia.adapter.SliderData
 
-class MainActivity2 : AppCompatActivity(){
+class Reciever_Slider : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.reciver_slider)
         // val bundle: Bundle?
         // bundle = intent.extras
         // val web = bundle!!.getString("URL")

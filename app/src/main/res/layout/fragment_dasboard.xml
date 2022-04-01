@@ -8,13 +8,37 @@
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
     tools:context=".MainActivity">
-    <include
-        layout="@layout/my_toolbar"
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent" />
+        app:liftOnScroll="true"
+        android:background="@color/white">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_dashbord"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Academia"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            app:menu="@menu/menu_parent"
+            app:titleTextColor="@android:color/holo_red_dark"
+            app:layout_scrollFlags="scroll|enterAlways|snapMargins">
+
+        </androidx.appcompat.widget.Toolbar>
+
+   <!--     <include
+            layout="@layout/my_toolbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:layout_scrollFlags="scroll|enterAlways|snapMargins"/>-->
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <androidx.core.widget.NestedScrollView
-        android:paddingTop="45dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

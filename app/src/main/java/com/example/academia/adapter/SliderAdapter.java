@@ -1,13 +1,8 @@
 package com.example.academia.adapter;
 
 
-import com.example.academia.MainActivity2;
+import com.example.academia.Reciever_Slider;
 import com.example.academia.R;
-import com.example.academia.ViewActivity;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import android.content.Context;
@@ -19,10 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 
 import com.squareup.picasso.Picasso;
 
@@ -69,57 +60,11 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
             public void onClick(View view) {
                 ///SliderData clickedItem = mSliderItems.get(position);
                 // Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, MainActivity2.class);
+                Intent intent = new Intent(context, Reciever_Slider.class);
                 intent.putExtra("key", "   Home   " + sliderItem.getName());
                 context.startActivity(intent);
 
-                ///Old code
             }
-           /*     if (position == 0){
-            intent.putExtra("key", "   Home   "+ sliderItem.getName());
-            context.startActivity(intent);
-
-        }
-        else if (position ==1){
-            intent.putExtra("key", "   News   "+ position);
-            context.startActivity(intent);
-
-        }
-        else if (position == 2){
-            intent.putExtra("key", "   Banking   "+ position);
-            context.startActivity(intent);
-        }
-
-        else if (position == 3){
-            intent.putExtra("key", "   Contacts   "+ position);
-            context.startActivity(intent);
-        }
-        else if (position == 4){
-            intent.putExtra("key", "   More   "+ position);
-            context.startActivity(intent);
-        }
-
-        else if (position == 5){
-            intent.putExtra("key", "   PEACE   "+ position);
-            context.startActivity(intent);
-
-        }    else if (position == 6){
-            intent.putExtra("key", "   PEACE   "+ position);
-            context.startActivity(intent);
-
-        }  else if (position == 7){
-            intent.putExtra("key", "   PEACE   "+ position);
-            context.startActivity(intent);
-        }
-
-
-           }
-
-
-*/
-
-            ///Old code
-
 
         });
     }

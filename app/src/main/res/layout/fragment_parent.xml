@@ -1,57 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        app:menu="@menu/main_menu"
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginTop="0dp"
-        app:layout_scrollFlags="scroll|enterAlways"
-        android:background="@android:color/white" >
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="News Feed"
-                android:textColor="@android:color/holo_blue_light"
-                android:textSize="20sp"
-                android:textStyle="bold">
-
-            </TextView>
-
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabs2"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
-        app:tabBackground="@android:color/transparent"
-        app:tabGravity="center"
-        app:tabMode="scrollable"
-        app:tabPadding="10dp"
-        tools:ignore="SpeakableTextPresentCheck">
+        app:liftOnScroll="true"
+        android:background="@color/white">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_parent"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Academia"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            app:menu="@menu/menu_parent"
+            app:titleTextColor="@android:color/holo_red_dark"
+            app:layout_scrollFlags="scroll|enterAlways|snapMargins">
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar_parent"
+            app:tabIconTint="@color/black"
+            app:tabIndicatorColor="#752121"
+            app:tabIndicatorFullWidth="false"
+            app:tabMode="fixed"
+            app:tabGravity="fill"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CHEM" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/sport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MATH" />
 
 
-    </com.google.android.material.tabs.TabLayout>
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/technology"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PHY" />
 
-    <com.example.academia.adapter.CustomViewPager
-        android:id="@+id/fr_custom_viewpager3"
+        </com.google.android.material.tabs.TabLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:paddingTop="5sp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tabs2"
-        android:layout_marginTop="0dp" />
+        android:layout_below="@id/tabs"
+        android:layout_marginTop="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/fr_custom_viewpager3">
 
-</RelativeLayout>
+
+    </androidx.viewpager.widget.ViewPager>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

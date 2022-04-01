@@ -35,71 +35,40 @@ class DashBoard : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_dasboard, container, false)
-
-        val viewpager_n = view.findViewById<CustomViewPager>(R.id.custom_viewpager)
-        viewpager_n?.offscreenPageLimit = 3
+    ): View? { val view = inflater.inflate(R.layout.fragment_dasboard, container, false)
 
 
-        //// Adding custom Toolbar
-       var toolbar = view.findViewById<Toolbar>(R.id.my_toolbar)
-        toolbar.inflateMenu(R.menu.main_menu)
-        toolbar.setOnMenuItemClickListener {
-
-            if (it.itemId == R.id.action_about){
-               // Toast.makeText(activity, "please bare with us, we are working on it", Toast.LENGTH_SHORT).show()
-                val uitter = Intent(context, About::class.java)
-                startActivity(uitter)
-
+        //setting up the toolbar
+        toolbar = view.findViewById(R.id.toolbar_dashbord)
+        toolbar?.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_about -> {
+                    val uitter = Intent(context, SettingsActivity::class.java)
+                    startActivity(uitter)
+                    true
+                }
+                R.id.search -> {
+                    // Handle search icon press
+                    true
+                }
+                else -> false
             }
-
-
-            if (it.itemId == R.id.action_share){
-                val share_go = Intent()
-
-                share_go.action = Intent.ACTION_SEND
-                share_go.putExtra(
-                    Intent.EXTRA_TEXT,
-                    "https://play.google.com/store/apps/details?id" + this.activity?.packageName)
-                share_go.type = "text/plain"
-                startActivity(Intent.createChooser(share_go, "share via"))
-            }
-
-            return@setOnMenuItemClickListener false
         }
-        ////
-        ////
 
 
 
-        //////
 
         var start = view?.findViewById<ImageView>(R.id.button)
-
         start?.setOnClickListener {
             // USED TO PREVENT DOUBLE CLICK
             start.isEnabled = false
-
             val starty = Intent(activity, Grid::class.java)
-
-            startActivity(starty)
-
-
-        }
+            startActivity(starty) }
 
 
         val image_h = view?.findViewById<ImageView>(R.id.cal)
         image_h?.setOnClickListener {
             image_h.isEnabled = false
-            // val intent = Intent(activity?.applicationContext, Calculator::class.java)
-            //intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            //startActivity(intent)
-
-            // USED TO PREVENT DOUBLE CLICK
-
             val intent = Intent(activity?.applicationContext, ViewActivity::class.java)
             val jk: String = "file:///android_asset/index.html"
             intent.putExtra("URL", jk)
@@ -110,12 +79,6 @@ class DashBoard : Fragment() {
         val image_Video = view?.findViewById<ImageView>(R.id.image_Video)
         image_Video?.setOnClickListener {
             image_Video?.isEnabled = false
-            // val intent = Intent(activity?.applicationContext, Calculator::class.java)
-            //intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            //startActivity(intent)
-
-            // USED TO PREVENT DOUBLE CLICK
-
             val intentu = Intent(activity?.applicationContext, ViewActivity::class.java)
             val jk = "file:///android_asset/index.html"
             intentu.putExtra("URL", jk)
@@ -130,9 +93,9 @@ class DashBoard : Fragment() {
         db = FirebaseFirestore.getInstance()
 
         loadImages()
-
         return view
     }
+
 
     private fun loadImages() {
         db!!.collection("Slider").get().addOnSuccessListener { queryDocumentSnapshots ->
@@ -152,36 +115,21 @@ class DashBoard : Fragment() {
                 // after that we are adding that
                 // data inside our array list.
                 sliderDataArrayList!!.add(model)
-
-
                 adapter = SliderAdapter(this@DashBoard.activity, sliderDataArrayList)
-
-
                 sliderView!!.setSliderAdapter(adapter!!)
-
-
-                sliderView!!.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION)
-
+                sliderView!!.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
                 sliderView!!.autoCycleDirection = SliderView.AUTO_CYCLE_DIRECTION_RIGHT
-
-                sliderView!!.scrollTimeInSec = 3
-
+                sliderView!!.scrollTimeInSec = 2
                 // below line is for setting auto
                 // cycle animation to our slider
                 sliderView!!.isAutoCycle = true
-
                 // below line is use to start
                 // the animation of our slider view.
                 sliderView!!.startAutoCycle()
             }
         }.addOnFailureListener { // if we get any error from Firebase we are
             // displaying a toast message for failure
-            Toast.makeText(
-                this@DashBoard.activity,
-                "Fail to load slider data..",
-                Toast.LENGTH_SHORT
-            )
-                .show()
+            Toast.makeText(this@DashBoard.activity, "Fail to load slider data..", Toast.LENGTH_SHORT).show()
         }
 
        sliderView?.setOnClickListener {
@@ -194,28 +142,15 @@ class DashBoard : Fragment() {
        }
     }
 
-
     //// THE REASO FOR THIS ADDITIONAL CODE IS TO PREVENT DOUBLE CLICK WHEN LUNCHNG ACITIVITY
-
     override fun onResume() {
         super.onResume()
-
         val button1 = view?.findViewById<ImageView>(R.id.button)
         button1?.isEnabled = true
-
         val button2 = view?.findViewById<ImageView>(R.id.cal)
         button2?.isEnabled = true
-
         val button3 = view?.findViewById<ImageView>(R.id.image_Video)
         button3?.isEnabled = true
-
-        //val button2  = view?.findViewById<ImageView>(R.id.video)
-//button2?.isEnabled = true
-    }
-    public fun loadImages22(){
-
-
-
     }
 
 }

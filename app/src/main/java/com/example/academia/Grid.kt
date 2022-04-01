@@ -96,8 +96,7 @@ class Grid : AppCompatActivity() {
 
         /// conncecting our offline from the class created data
         //reference = FirebaseDatabase.getInstance().getReference("grid")
-        reference = FirebaseDatabase.getInstance().reference.child("grid")
-        reference!!.keepSynced(true)
+
 
         // initializing variable for web view.
         webView = findViewById(R.id.myWebView)
@@ -105,7 +104,7 @@ class Grid : AppCompatActivity() {
         // of our Firebase database.
         firebaseDatabase = FirebaseDatabase.getInstance()
         // below line is used to get reference for our database.
-        databaseReference = firebaseDatabase!!.reference.child("grid")
+        databaseReference = firebaseDatabase!!.getReference().child("Web").child("doc").child("url2")
 
         // calling method to initialize
         // our web view.

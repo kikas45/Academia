@@ -13,6 +13,8 @@
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/drawable/ic_about.xml" value="0.20989583333333334" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/drawable/ic_arrow.xml" value="0.171875" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/drawable/ic_baseline_dashboard.xml" value="0.15" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.12604166666666666" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/drawable/ic_download.xml" value="0.14947916666666666" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/drawable/ic_facebook.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/drawable/ic_group_52.xml" value="0.13489583333333333" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/drawable/ic_icon.xml" value="0.2175925925925926" />
@@ -26,30 +28,42 @@
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/drawable/indicator_selector.xml" value="0.1421875" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/drawable/slash_image.xml" value="0.14" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/drawable/splash2.xml" value="0.13072916666666667" />
-        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/activity_about.xml" value="0.14" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/activity_about.xml" value="0.25" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/activity_calculator.xml" value="0.12604166666666666" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/activity_grid.xml" value="0.209375" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/activity_intro.xml" value="0.33" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/activity_main.xml" value="0.14907407407407408" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/activity_main2.xml" value="0.25" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/activity_settings.xml" value="0.18" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/content_main.xml" value="0.16875" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/contextual_action_bar.xml" value="0.1328125" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/fragment_blank.xml" value="0.12708333333333333" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/fragment_bus.xml" value="0.15555555555555556" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/fragment_dasboard.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/fragment_home.xml" value="0.15572916666666667" />
-        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/fragment_parent.xml" value="0.2" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/fragment_parent.xml" value="0.25" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/fragment_physics.xml" value="0.1421875" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/fragment_t_r_y.xml" value="0.12708333333333333" />
-        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/fragment_tab1.xml" value="0.1703125" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/fragment_tab1.xml" value="0.22" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/fragment_tab2.xml" value="0.15625" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/fragment_tab3.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/fragment_tab4.xml" value="0.16875" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/image_slider_item.xml" value="0.209375" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/layout_screen.xml" value="0.25" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/maths_fragment.xml" value="0.13125" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/message_item.xml" value="0.25" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/message_item222.xml" value="0.14479166666666668" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/messalist_item22.xml" value="0.25" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/my_custom_splash.xml" value="0.19375" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/my_toolbar.xml" value="0.33" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/notification.xml" value="0.1" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/reciver_slider.xml" value="0.18020833333333333" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/layout/seeting_layout.xml" value="0.1328125" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/menu/contextual_action_bar.xml" value="0.1328125" />
         <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/menu/main_menu.xml" value="0.5" />
-        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/menu/menu_parent.xml" value="0.16875" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/menu/menu_parent.xml" value="0.25" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/menu/menu_parent2222.xml" value="0.14479166666666668" />
+        <entry key="..\:/Users/HP/Desktop/Andriod Apps/Academia/app/src/main/res/menu/sample_actions.xml" value="0.19375" />
       </map>
     </option>
   </component>

@@ -74,7 +74,7 @@ class Home : Fragment() {
         ///////
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase!!.getReference("home")  //.child("value").child("url2")
+        databaseReference = firebaseDatabase!!.getReference().child("Web").child("doc").child("url1")
         /////
         webView = view.findViewById(R.id.myWebView)
 
