@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/toolbar_parent"
             app:tabIconTint="@color/black"
-            app:tabIndicatorColor="#752121"
+            app:tabIndicatorColor="#AF9A9A"
             app:tabIndicatorFullWidth="false"
             app:tabMode="fixed"
             app:tabGravity="fill"
@@ -61,18 +61,12 @@
 
 
 
-
-
     <androidx.viewpager.widget.ViewPager
-        android:paddingTop="5sp"
+        android:id="@+id/fr_real_viewpager3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tabs"
-        android:layout_marginTop="0dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:id="@+id/fr_custom_viewpager3">
+        tools:ignore="SpeakableTextPresentCheck" />
 
-
-    </androidx.viewpager.widget.ViewPager>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

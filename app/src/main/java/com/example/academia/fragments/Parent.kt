@@ -2,20 +2,21 @@ package com.example.academia.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
-import com.example.academia.R
+import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.example.academia.About
+import com.example.academia.R
+import com.example.academia.SerachActivity
 import com.example.academia.adapter.ViewPagerAdapter
-import com.example.academia.fragments.seconadryFragment.Mathematics
+import com.example.academia.fragments.seconadryFragment.Explore
+import com.example.academia.fragments.seconadryFragment.ForYou
 import com.example.academia.fragments.seconadryFragment.Physics
-import com.example.academia.fragments.seconadryFragment.Sciences
-
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.ktx.Firebase
 
 
 class Parent : Fragment() {
@@ -34,16 +35,22 @@ class Parent : Fragment() {
 
         val adapter = ViewPagerAdapter(childFragmentManager)
 
-        adapter.addFragment(Physics(), "FOR YOU");
-        adapter.addFragment(Home(), "MORE");
-        adapter.addFragment( Mathematics(), "EXPLORE");
+        adapter.addFragment(ForYou(), "FOR YOU");
+        adapter.addFragment(Physics(), "MORE");
+        adapter.addFragment(Explore(), "EXPLORE");
 
-        val com_viewPager = view?.findViewById<ViewPager>(R.id.fr_custom_viewpager3)
-        com_viewPager?.adapter = adapter
-        com_viewPager?.offscreenPageLimit = 6
+        val parent_viewPager = view?.findViewById<ViewPager>(R.id.fr_real_viewpager3)
+        parent_viewPager?.adapter = adapter
+        parent_viewPager?.offscreenPageLimit = 6
 
         val tabs = view?.findViewById<TabLayout>(R.id.tabs2)
-        tabs?.setupWithViewPager(com_viewPager)
+        tabs?.setupWithViewPager(parent_viewPager)
+        tabs?.setTabRippleColorResource(android.R.color.transparent)
+
+
+        ///
+        //
+
 
         //setting up the toolbar
         toolbar = view.findViewById(R.id.toolbar_parent)
@@ -55,7 +62,8 @@ class Parent : Fragment() {
                     true
                 }
                 R.id.search -> {
-                    // Handle search icon press
+                    val search = Intent(context, SerachActivity::class.java)
+                    startActivity(search)
                     true
                 }
                 else -> false
@@ -69,6 +77,18 @@ class Parent : Fragment() {
 
         return view;
 
+    }
+    private var _hasLoadedOnce = false // your boolean field
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+
+        // we check that the fragment is becoming visible
+        if (isVisibleToUser && !_hasLoadedOnce) {
+
+
+            _hasLoadedOnce = true
+        }
     }
 
 }

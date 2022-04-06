@@ -18,6 +18,15 @@
         android:theme="@style/my_Splash"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Setting_333"
+            android:exported="false" />
+        <activity
+            android:name=".themes.Settings_Po"
+            android:exported="false" />
+        <activity
+            android:name=".SerachActivity"
+            android:exported="false" />
+        <activity
             android:name=".SettingsActivity"
             android:exported="false" />
         <activity
@@ -81,7 +90,7 @@
             android:name=".adapter.CustomMessagingService"
             android:directBootAware="true"
             android:exported="false"
-            tools:ignore="Instantiatable">
+            tools:ignore="ExtraText,Instantiatable">
             tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />

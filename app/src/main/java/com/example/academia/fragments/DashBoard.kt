@@ -1,25 +1,20 @@
 package com.example.academia.fragments
 
-import android.app.AlertDialog
-import android.app.Notification
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.ImageView
 import android.widget.Toast
-import com.example.academia.adapter.CustomViewPager
-import com.example.academia.adapter.SliderAdapter
-import com.example.academia.adapter.SliderData
+import com.example.academia.SliderAdapters.SliderAdapter
+import com.example.academia.SliderAdapters.SliderData
 import com.google.firebase.firestore.FirebaseFirestore
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
 import java.util.ArrayList
-import android.view.MenuInflater
-import android.widget.RemoteViews
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.academia.*
+import com.example.academia.themes.Settings_Po
 
 
 class DashBoard : Fragment() {
@@ -43,12 +38,13 @@ class DashBoard : Fragment() {
         toolbar?.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.action_about -> {
-                    val uitter = Intent(context, SettingsActivity::class.java)
+                    val uitter = Intent(context, Setting_333::class.java)
                     startActivity(uitter)
                     true
                 }
                 R.id.search -> {
-                    // Handle search icon press
+                    val search = Intent(context, SerachActivity::class.java)
+                    startActivity(search)
                     true
                 }
                 else -> false
@@ -115,7 +111,10 @@ class DashBoard : Fragment() {
                 // after that we are adding that
                 // data inside our array list.
                 sliderDataArrayList!!.add(model)
-                adapter = SliderAdapter(this@DashBoard.activity, sliderDataArrayList)
+                adapter = SliderAdapter(
+                    this@DashBoard.activity,
+                    sliderDataArrayList
+                )
                 sliderView!!.setSliderAdapter(adapter!!)
                 sliderView!!.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
                 sliderView!!.autoCycleDirection = SliderView.AUTO_CYCLE_DIRECTION_RIGHT

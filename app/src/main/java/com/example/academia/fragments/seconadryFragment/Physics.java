@@ -1,9 +1,12 @@
 package com.example.academia.fragments.seconadryFragment;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,9 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.academia.firebase.Message;
+import com.example.academia.Fire_Models.Message;
 import com.example.academia.R;
 import com.example.academia.firebase.RecyclerAdapter;
+import com.google.android.datatransport.runtime.scheduling.jobscheduling.Uploader;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,20 +34,20 @@ import java.util.Collections;
 
 public class Physics extends Fragment {
 
-
     //Global varoables
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
     private DatabaseReference myRef;
     private ArrayList<Message> messagesList;
     private RecyclerAdapter adapter;
-    private Context mcontext;
-    Toolbar toolbar;
+
+    boolean _areLecturesLoaded = false;
+
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view =  inflater.inflate(R.layout.fragment_physics, container, false);
         recyclerView = view.findViewById(R.id.recyclerview);
 
@@ -52,7 +56,6 @@ public class Physics extends Fragment {
         recyclerView.setHasFixedSize(true);
 
         myRef = FirebaseDatabase.getInstance().getReference();
-
         //ArrayList
         messagesList = new ArrayList<>();
 
@@ -65,7 +68,25 @@ public class Physics extends Fragment {
         return  view;
     }
 
-    private void GetDataFromFirebase() {
+
+
+
+    private  boolean isviewShown  = false;
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(getView()!=null && isVisibleToUser){
+            isviewShown = true;
+
+
+        }else {isviewShown = false;
+
+
+        }
+    }
+
+    private void GetDataFromFirebase( ) {
 
         Query query = myRef.child("David").child("Employee");
         query.addValueEventListener(new ValueEventListener() {
@@ -80,6 +101,7 @@ public class Physics extends Fragment {
                         Message message = new Message();
 
                       message.setDate(snapshot.child("date").getValue().toString());
+                      message.setLen(snapshot.child("len").getValue().toString());
                        message.setDes(snapshot.child("des").getValue().toString());
                          message.setIcon(snapshot.child("icon").getValue().toString());
                         message.setImage(snapshot.child("image").getValue().toString());
@@ -129,7 +151,6 @@ public class Physics extends Fragment {
         }
 
     }
-
 
 
 }

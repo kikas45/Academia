@@ -11,11 +11,13 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager.widget.ViewPager
 import com.example.academia.adapter.ViewPagerAdapter
 import com.example.academia.fragments.DashBoard
+import com.example.academia.fragments.Home
 import com.example.academia.fragments.Parent
 import com.example.academia.fragments.seconadryFragment.Physics
 import com.google.android.gms.tasks.OnCompleteListener
 
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : AppCompatActivity() {
@@ -30,8 +32,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
-        Physics.Utils.getDatabase()
-
+       Utils.database
         setuptab()
         fireBaseNotification()
 
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         /// add titles
         adapter.addFragment(Parent(), title = "")
         adapter.addFragment(DashBoard(), title = "")
+        adapter.addFragment(Home(), title = "")
 
 
         //// settig up the View pager
@@ -59,7 +61,9 @@ class MainActivity : AppCompatActivity() {
         ////add the icons
         tabs.getTabAt(0)!!.setIcon(R.drawable.home)
         tabs.getTabAt(1)!!.setIcon(R.drawable.dasboard)
+        tabs.getTabAt(2)!!.setIcon(R.drawable.dasboard)
 
+        tabs.setTabRippleColorResource(android.R.color.transparent)
 
     }
 
@@ -86,15 +90,43 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onBackPressed() {
+        //super.onBackPressed()
 
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage("Are you sure you want to Exit?")
-            .setNegativeButton("No", null)
-            .setPositiveButton(
-                "Yes"
-            ) { dialogInterface, i -> finishAffinity() }.show();
+        val com_viewPager = findViewById<ViewPager>(R.id.custom_viewpager)
+
+        if (com_viewPager.currentItem>0){
+            com_viewPager.currentItem = com_viewPager.currentItem -1
+        }else{
+
+
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage("Are you sure you want to Exit?")
+                .setNegativeButton("No", null)
+                .setPositiveButton(
+                    "Yes"
+                ) { dialogInterface, i -> finishAffinity() }.show();
+
+        }
     }
 
+    object Utils {
+        private var mDatabase: FirebaseDatabase? = null
+        val database: FirebaseDatabase?
+            get() {
+                if (mDatabase == null) {
+                    mDatabase = FirebaseDatabase.getInstance()
+                    mDatabase!!.setPersistenceEnabled(true)
+                }
+                return mDatabase
+            }
+    }
+
+    override fun setVisible(visible: Boolean) {
+        super.setVisible(visible)
+        if (visible){
+            Home()
+        }
+    }
 
 }
 

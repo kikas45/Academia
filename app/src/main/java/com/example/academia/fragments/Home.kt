@@ -150,7 +150,8 @@ class Home : Fragment() {
                 val intent = Intent(activity?.applicationContext, ViewActivity::class.java)
                 intent.putExtra("URL", url)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-               startActivity(intent)
+               //startActivity(intent)
+                startActivityForResult(intent, 1)
                webView!!.stopLoading()
                 webView!!.requestDisallowInterceptTouchEvent(false)
 
