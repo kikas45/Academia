@@ -13,10 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.example.academia.Fire_Models.Message;
 import com.example.academia.R;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.PicassoProvider;
 
 import java.util.ArrayList;
 
@@ -47,18 +45,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         //TextView
 
 
-        holder.title.setText(messagesList.get(position).getTitle());
-        holder.type.setText(messagesList.get(position).getType());
+     holder.title.setText(messagesList.get(position).getTitle());
+     holder.type.setText(messagesList.get(position).getType());
 
-        Glide.with(mContext).load(messagesList.get(position).getIcon()).centerCrop().into(holder.icon);
+     Glide.with(mContext).load(messagesList.get(position).getIcon()).centerCrop().into(holder.icon);
 
-     Glide.with(mContext)
-                .load(messagesList.get(position).getImage()).centerCrop()
-                .into(holder.imageView);
+     Glide.with(mContext).load(messagesList.get(position).getImage()).centerCrop().into(holder.imageView);
 
-        holder.description.setText(messagesList.get(position).getDes());
+     holder.description.setText(messagesList.get(position).getDes());
 
-       holder.date.setText(messagesList.get(position).getDate());
+    holder.date.setText(messagesList.get(position).getDate());
+
+    holder.len.setText(messagesList.get(position).getLen());
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +79,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         //widgets
 
       TextView title, type, description, date;
+      TextView len;
       ImageView imageView;
       ImageView icon;
 
@@ -89,32 +88,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             super(itemView);
 
          icon = itemView.findViewById(R.id.profile_image);
-            title = itemView.findViewById(R.id.title);
+         title = itemView.findViewById(R.id.title);
             type = itemView.findViewById(R.id.type);
             imageView = itemView.findViewById(R.id.imageView);
            description = itemView.findViewById(R.id.description);
            date = itemView.findViewById(R.id.date);
+           len = itemView.findViewById(R.id.len);
 
         }
     }
 
-/*
-        public  String timeconversion (long value){
-        String videoTime;
-
-        int duration = (int) value;
-        int hrs = (duration/3600000);
-        int mns = (duration/60000) % 60000;
-        int sec = duration % 60000 /1000;
-        if (hrs > 0) {
-            videoTime = String.format("%02d:%02d", hrs, mns, sec);
-        }else {
-            videoTime = String.format("%02d:%02d", mns, sec);
-        }
-
-        return  videoTime;
-        }
-*/
 
 
 }

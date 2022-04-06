@@ -1,24 +1,20 @@
-package com.example.academia.firebase;
+package com.example.academia.Fire_Models;
 
 public class Message {
-    String icon;
-    String  title;
-    String type;
-    String image;
-    String  des;
-    String  date;
+   private String icon, title, type, image, des, date,len;
 
 
     public Message() {
     }
 
-    public Message(String icon, String title, String type, String image, String des, String date) {
+    public Message(String icon, String title, String type, String image, String des, String date, String len) {
         this.icon = icon;
         this.title = title;
         this.type = type;
         this.image = image;
         this.des = des;
         this.date = date;
+        this.len = len;
     }
 
     public String getIcon() {
@@ -67,5 +63,13 @@ public class Message {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getLen() {
+        return len;
+    }
+
+    public void setLen(String len) {
+        this.len = len;
     }
 }

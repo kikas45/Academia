@@ -1,6 +1,7 @@
-package com.example.academia.adapter;
+package com.example.academia.SliderAdapters;
 
 
+import com.bumptech.glide.Glide;
 import com.example.academia.Reciever_Slider;
 import com.example.academia.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
@@ -52,7 +53,10 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
 
         viewHolder.text_slider.setTextSize(16);;
         viewHolder.text_slider.setTextColor(Color.WHITE);
-        Picasso.get().load(sliderItem.getImgUrl()).into(viewHolder.imageView);
+       /// Picasso.get().load(sliderItem.getImgUrl()).into(viewHolder.imageView);
+
+        Glide.with(context).load(mSliderItems.get(position).getImgUrl()).centerCrop().into(viewHolder.imageView);
+
 
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -79,9 +83,9 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
     class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
 
         // variables for our view and image view.
-        View itemView;
-        ImageView imageView;
-        TextView text_slider;
+       private View itemView;
+       private ImageView imageView;
+       private TextView text_slider;
 
         public SliderAdapterVH(View itemView) {
             super(itemView);

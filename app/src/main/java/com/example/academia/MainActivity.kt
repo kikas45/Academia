@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
-        Physics.Utils.getDatabase()
+       Physics.Utils.getDatabase()
 
         setuptab()
         fireBaseNotification()
@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
         tabs.getTabAt(0)!!.setIcon(R.drawable.home)
         tabs.getTabAt(1)!!.setIcon(R.drawable.dasboard)
 
+        tabs.setTabRippleColorResource(android.R.color.transparent)
 
     }
 

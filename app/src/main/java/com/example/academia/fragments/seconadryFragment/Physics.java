@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.academia.firebase.Message;
+import com.example.academia.Fire_Models.Message;
 import com.example.academia.R;
 import com.example.academia.firebase.RecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -32,18 +32,16 @@ public class Physics extends Fragment {
 
 
     //Global varoables
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
     private DatabaseReference myRef;
     private ArrayList<Message> messagesList;
     private RecyclerAdapter adapter;
-    private Context mcontext;
-    Toolbar toolbar;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view =  inflater.inflate(R.layout.fragment_physics, container, false);
         recyclerView = view.findViewById(R.id.recyclerview);
 
@@ -65,6 +63,8 @@ public class Physics extends Fragment {
         return  view;
     }
 
+
+
     private void GetDataFromFirebase() {
 
         Query query = myRef.child("David").child("Employee");
@@ -80,6 +80,7 @@ public class Physics extends Fragment {
                         Message message = new Message();
 
                       message.setDate(snapshot.child("date").getValue().toString());
+                      message.setLen(snapshot.child("len").getValue().toString());
                        message.setDes(snapshot.child("des").getValue().toString());
                          message.setIcon(snapshot.child("icon").getValue().toString());
                         message.setImage(snapshot.child("image").getValue().toString());

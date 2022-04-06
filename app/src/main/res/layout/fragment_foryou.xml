@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    tools:context=".MainActivity">
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+     <LinearLayout
+         android:orientation="vertical"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+         <TextView
+             android:visibility="gone"
+             android:id="@+id/recon_text"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="30dp"
+             android:layout_marginRight="10dp"
+             android:layout_marginLeft="10dp"
+             android:text="Recommended Playlist Videos"
+             android:textColor="#474444"
+             android:textStyle="bold"
+             android:textSize="20sp" />
+         <androidx.recyclerview.widget.RecyclerView
+             android:id="@+id/recommended_recycler"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:layout_margin="8dp" />
+         <TextView
+             android:visibility="gone"
+             android:id="@+id/more_text"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="25dp"
+             android:layout_marginRight="10dp"
+             android:layout_marginLeft="10dp"
+             android:textColor="#474444"
+             android:textStyle="bold"
+             android:text="More Playlist"
+             android:textSize="20sp" />
+
+         <androidx.recyclerview.widget.RecyclerView
+             android:id="@+id/more_recycler"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+            android:layout_margin="8dp" />
+
+     </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.core.widget.NestedScrollView>

@@ -11,9 +11,9 @@ import com.example.academia.R
 import androidx.viewpager.widget.ViewPager
 import com.example.academia.About
 import com.example.academia.adapter.ViewPagerAdapter
-import com.example.academia.fragments.seconadryFragment.Mathematics
+import com.example.academia.fragments.seconadryFragment.Explore
 import com.example.academia.fragments.seconadryFragment.Physics
-import com.example.academia.fragments.seconadryFragment.Sciences
+import com.example.academia.fragments.seconadryFragment.ForYou
 
 import com.google.android.material.tabs.TabLayout
 
@@ -34,9 +34,9 @@ class Parent : Fragment() {
 
         val adapter = ViewPagerAdapter(childFragmentManager)
 
-        adapter.addFragment(Physics(), "FOR YOU");
-        adapter.addFragment(Home(), "MORE");
-        adapter.addFragment( Mathematics(), "EXPLORE");
+        adapter.addFragment(ForYou(), "FOR YOU");
+        adapter.addFragment(Physics(), "MORE");
+        adapter.addFragment(Explore(), "EXPLORE");
 
         val com_viewPager = view?.findViewById<ViewPager>(R.id.fr_custom_viewpager3)
         com_viewPager?.adapter = adapter
@@ -44,6 +44,8 @@ class Parent : Fragment() {
 
         val tabs = view?.findViewById<TabLayout>(R.id.tabs2)
         tabs?.setupWithViewPager(com_viewPager)
+        tabs?.setTabRippleColorResource(android.R.color.transparent)
+
 
         //setting up the toolbar
         toolbar = view.findViewById(R.id.toolbar_parent)

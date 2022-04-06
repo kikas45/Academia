@@ -1,4 +1,4 @@
-package com.example.academia.adapter;
+package com.example.academia.SliderAdapters;
 
 public class SliderData {
     private String imgUrl, name;
