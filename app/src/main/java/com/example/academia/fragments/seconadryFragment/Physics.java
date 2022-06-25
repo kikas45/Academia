@@ -1,12 +1,9 @@
 package com.example.academia.fragments.seconadryFragment;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,7 +17,6 @@ import android.widget.Toast;
 import com.example.academia.Fire_Models.Message;
 import com.example.academia.R;
 import com.example.academia.firebase.RecyclerAdapter;
-import com.google.android.datatransport.runtime.scheduling.jobscheduling.Uploader;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,14 +30,12 @@ import java.util.Collections;
 
 public class Physics extends Fragment {
 
+
     //Global varoables
     private RecyclerView recyclerView;
     private DatabaseReference myRef;
     private ArrayList<Message> messagesList;
     private RecyclerAdapter adapter;
-
-    boolean _areLecturesLoaded = false;
-
 
 
     @Override
@@ -56,6 +50,7 @@ public class Physics extends Fragment {
         recyclerView.setHasFixedSize(true);
 
         myRef = FirebaseDatabase.getInstance().getReference();
+
         //ArrayList
         messagesList = new ArrayList<>();
 
@@ -70,23 +65,7 @@ public class Physics extends Fragment {
 
 
 
-
-    private  boolean isviewShown  = false;
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if(getView()!=null && isVisibleToUser){
-            isviewShown = true;
-
-
-        }else {isviewShown = false;
-
-
-        }
-    }
-
-    private void GetDataFromFirebase( ) {
+    private void GetDataFromFirebase() {
 
         Query query = myRef.child("David").child("Employee");
         query.addValueEventListener(new ValueEventListener() {
@@ -151,6 +130,7 @@ public class Physics extends Fragment {
         }
 
     }
+
 
 
 }
