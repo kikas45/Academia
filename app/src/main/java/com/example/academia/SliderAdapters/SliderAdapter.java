@@ -55,7 +55,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
         viewHolder.text_slider.setTextColor(Color.WHITE);
        /// Picasso.get().load(sliderItem.getImgUrl()).into(viewHolder.imageView);
 
-        Glide.with(context).load(mSliderItems.get(position).getImgUrl()).centerCrop().fitCenter().into(viewHolder.imageView);
+        Glide.with(context).load(mSliderItems.get(position).getImgUrl()).centerCrop().into(viewHolder.imageView);
 
 
 
